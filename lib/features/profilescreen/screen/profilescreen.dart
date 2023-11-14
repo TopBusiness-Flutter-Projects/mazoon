@@ -371,10 +371,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     paddingHorizontal: getSize(context) / 20,
                                     borderRadius: getSize(context) / 24,
                                     onClick: () {
-                                      errorGetBar('working_on_it'.tr());
+                                      // errorGetBar('working_on_it'.tr());
 
-                                      // Navigator.pushNamed(context,
-                                      //     Routes.selectMonthPlanPayment);
+                                      Navigator.pushNamed(context,
+                                          Routes.selectMonthPlanPayment);
 
                                       ///renew
                                     }),

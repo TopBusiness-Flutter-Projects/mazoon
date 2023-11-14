@@ -1,25 +1,22 @@
-import 'comment_data_model.dart';
-
-class SingleReplayModel {
-  Reply data;
+class EmptyModel {
+  String data;
   String message;
   int code;
 
-  SingleReplayModel({
+  EmptyModel({
     required this.data,
     required this.message,
     required this.code,
   });
 
-  factory SingleReplayModel.fromJson(Map<String, dynamic> json) =>
-      SingleReplayModel(
-        data: Reply.fromJson(json["data"]),
+  factory EmptyModel.fromJson(Map<String, dynamic> json) => EmptyModel(
+        data: json["data"],
         message: json["message"],
         code: json["code"],
       );
 
   Map<String, dynamic> toJson() => {
-        "data": data.toJson(),
+        "data": data,
         "message": message,
         "code": code,
       };

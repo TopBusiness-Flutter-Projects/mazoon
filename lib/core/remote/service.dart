@@ -16,12 +16,15 @@ import '../models/addnotebystudent.dart';
 import '../models/ads_model.dart';
 import '../models/all_favourite.dart';
 import '../models/applaymakeexammodel.dart';
+import '../models/applydiscount.dart';
 import '../models/applylessonexammodel.dart';
 import '../models/audiolessonmodel.dart';
 import '../models/class_lesson_model.dart';
 import '../models/classes_exam_data_model.dart';
 import '../models/count_down_model.dart';
 import '../models/dependexam.dart';
+import '../models/discountmodel.dart';
+import '../models/empty_model.dart';
 import '../models/exam_classes_model.dart';
 import '../models/exam_hero.dart';
 import '../models/exam_instruction_model.dart';
@@ -45,6 +48,7 @@ import '../models/single_replay.dart';
 import '../models/sources_references_model.dart';
 import '../models/sources_referenes_by_id_model.dart';
 import '../models/student_reports_model.dart';
+import '../models/subscrabtion.dart';
 import '../models/times_model.dart';
 import '../models/timeupdate.dart';
 import '../models/update_notification.dart';
@@ -1572,6 +1576,72 @@ class ServiceApi {
         ),
       );
       return Right(StatusResponseModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  ///////////////Payment
+  Future<Either<Failure, SubscriptionsModel>> getAllMonthPlan() async {
+    UserModel loginModel = await Preferences.instance.getUserModel();
+    String lan = await Preferences.instance.getSavedLang();
+
+    try {
+      dynamic response = await dio.get(
+        EndPoints.AllMonthes,
+        options: Options(
+          headers: {
+            'Authorization': loginModel.data!.token,
+            'Accept-Language': lan
+          },
+        ),
+      );
+      return Right(SubscriptionsModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+  ////
+
+  Future<Either<Failure, CalculateDiscountModel>> calDiscount(
+      {required String coupon, required List<ApplyDiscount> monthes}) async {
+    UserModel loginModel = await Preferences.instance.getUserModel();
+    String lan = await Preferences.instance.getSavedLang();
+    try {
+      Map<String, dynamic> requestBody = {};
+      for (int i = 0; i < monthes.length; i++) {
+        requestBody.addAll(await monthes[i].toJson(i));
+      }
+      print("ahmed");
+      print(requestBody);
+      print("ahmed");
+      dynamic response = await dio.post(EndPoints.calDiscount,
+          formDataIsEnabled: true,
+          body: requestBody,
+          options: Options(
+            headers: {
+              'Authorization': loginModel.data!.token,
+              'Accept-Language': lan
+            },
+          ));
+      return Right(CalculateDiscountModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  ///payment
+  Future<Either<Failure, EmptyModel>> applyPayment(
+      {required String totalPrice}) async {
+    UserModel loginModel = await Preferences.instance.getUserModel();
+    String lan = await Preferences.instance.getSavedLang();
+    try {
+      dynamic response = await dio.post(EndPoints.payment + totalPrice,
+          options: Options(headers: {
+            'Authorization': loginModel.data!.token,
+            'Accept-Language': lan
+          }));
+      return Right(EmptyModel.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
     }
