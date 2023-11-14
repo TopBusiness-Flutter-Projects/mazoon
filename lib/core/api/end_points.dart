@@ -98,4 +98,9 @@ class EndPoints {
   static const String addNewSuggest = '${baseUrl}auth/add-suggest';
   static const String openFirstLesson = '${baseUrl}lesson/';
   static const String userScreenshot = '${baseUrl}auth/user-add-screenshot';
+  static const String AllMonthes = '${baseUrl}payments/all-months';
+  static const String calDiscount =
+      '${baseUrl}payments/check-money-paid-with-discount';
+  //processed?total_after_discount=360.00
+  static const String payment = '${baseUrl}processed?total_after_discount=';
 }

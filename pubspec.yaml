@@ -100,6 +100,7 @@ dependencies:
   youtube_player_flutter: ^8.1.2
   showcaseview: ^2.0.3
   screenshot_callback: ^3.0.1
+  upgrader: 
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -10,6 +10,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:screenshot_callback/screenshot_callback.dart';
+import 'package:upgrader/upgrader.dart';
 import 'dart:async';
 import 'app.dart';
 import 'app_bloc_observer.dart';
@@ -90,7 +91,8 @@ Future<void> main() async {
           saveLocale: true,
           startLocale: Locale('ar', ''),
           fallbackLocale: Locale('ar', ''),
-          child: HotRestartController(child: const Elmazoon()),
+          child: UpgradeAlert(
+              child: HotRestartController(child: const Elmazoon())),
         );
       }),
     ),

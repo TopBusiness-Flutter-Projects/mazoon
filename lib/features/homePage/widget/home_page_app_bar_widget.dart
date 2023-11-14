@@ -11,6 +11,7 @@ import '../../../config/routes/app_routes.dart';
 import '../../../core/utils/dialogs.dart';
 import '../../lessonExamScreen/cubit/questionlessonexamcubit.dart';
 import '../../navigation_bottom/cubit/navigation_cubit.dart';
+import '../../payment/cubit/paymentcubit.dart';
 import '../../sources_and_references/cubit/source_references_cubit.dart';
 
 class HomePageAppBarWidget extends StatelessWidget {
@@ -20,6 +21,7 @@ class HomePageAppBarWidget extends StatelessWidget {
       this.isSource = false,
       this.isFavourite = false,
       this.isExam = false,
+      this.isPayment = false,
       this.isNotification = false})
       : super(key: key);
   final bool? isHome;
@@ -27,6 +29,7 @@ class HomePageAppBarWidget extends StatelessWidget {
   final bool? isFavourite;
   final bool isNotification;
   final bool? isExam;
+  final bool? isPayment;
   @override
   Widget build(BuildContext context) {
     String lang = EasyLocalization.of(context)!.locale.languageCode;
@@ -233,20 +236,33 @@ class HomePageAppBarWidget extends StatelessWidget {
                                 InkWell(
                                   onTap: () {
                                     Navigator.pop(context);
-                                    isSource!
-                                        ? context
-                                            .read<SourceReferencesCubit>()
-                                            .sourcesReferencesByIdList
-                                            .clear()
-                                        : isExam!
-                                            ? {
-                                                Navigator.pop(context),
-                                                context
-                                                    .read<
-                                                        QuestionsLessonExamCubit>()
-                                                    .isRecording = false
-                                              }
-                                            : null;
+                                    isPayment!
+                                        ? {
+                                            context
+                                                .read<PaymentCubit>()
+                                                .calResonse = null,
+                                            context
+                                                .read<PaymentCubit>()
+                                                .couponController
+                                                .clear(),
+                                            context
+                                                .read<PaymentCubit>()
+                                                .monthes = []
+                                          }
+                                        : isSource!
+                                            ? context
+                                                .read<SourceReferencesCubit>()
+                                                .sourcesReferencesByIdList
+                                                .clear()
+                                            : isExam!
+                                                ? {
+                                                    Navigator.pop(context),
+                                                    context
+                                                        .read<
+                                                            QuestionsLessonExamCubit>()
+                                                        .isRecording = false
+                                                  }
+                                                : null;
                                   },
                                   child: Visibility(
                                     visible: !isHome!,
