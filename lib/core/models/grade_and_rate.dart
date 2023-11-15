@@ -66,7 +66,7 @@ class Degree {
   int id;
   String name;
   String backgroundColor;
-  double percentage;
+  dynamic percentage;
   String degree;
 
   Degree({

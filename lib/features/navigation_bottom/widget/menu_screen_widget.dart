@@ -190,15 +190,15 @@ class MenuScreenWidget extends StatelessWidget {
                               onclick: () {
                                 Navigator.pushNamed(
                                     context, Routes.monthplanPageScreenRoute);
-                                Navigator.pushNamed(
-                                    context, Routes.monthplanPageScreenRoute);
                               },
                             ),
                             MenuListTileWidget(
                               title: 'live'.tr(),
                               iconPath: ImageAssets.liveIcon,
                               onclick: () {
-                                errorGetBar('working_on_it'.tr());
+                                Navigator.pushNamed(
+                                    context, Routes.liveExamScreen);
+                                // errorGetBar('working_on_it'.tr());
                               },
                             ),
                             MenuListTileWidget(

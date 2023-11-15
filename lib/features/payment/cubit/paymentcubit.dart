@@ -122,6 +122,8 @@ class PaymentCubit extends Cubit<PaymentState> {
     }, (r) async {
       //
       Navigator.pop(context);
+      Navigator.pop(context);
+
       await launchUrl(
         Uri.parse(r.data),
         mode: LaunchMode.inAppWebView,

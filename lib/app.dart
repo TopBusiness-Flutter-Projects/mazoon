@@ -33,6 +33,7 @@ import 'features/examinstructions/cubit/examinstructions_cubit.dart';
 import 'features/favourites/cubit/favourite_cubit.dart';
 import 'features/invite_friends/cubit/cubit.dart';
 import 'features/lessonExamScreen/cubit/questionlessonexamcubit.dart';
+import 'features/liveexam/cubit/cubit.dart';
 import 'features/notes/cubit/note_cubit.dart';
 import 'features/notificationpage/cubit/notification_cubit.dart';
 import 'features/paperexamRegister/cubit/paper_exam_register_cubit.dart';
@@ -264,6 +265,7 @@ class _ElmazoonState extends State<Elmazoon> with WidgetsBindingObserver {
         BlocProvider(
           create: (_) => injector.serviceLocator<StudentReportsCubit>(),
         ),
+
         BlocProvider(
           create: (_) => injector.serviceLocator<IniviteFreiendsCubit>(),
         ),
@@ -298,8 +300,11 @@ class _ElmazoonState extends State<Elmazoon> with WidgetsBindingObserver {
         BlocProvider(
           create: (_) => injector.serviceLocator<NotificationCubit>(),
         ),
-        //    BlocProvider(
-        //   create: (_) => injector.serviceLocator<RateAppCubit>(),
+        BlocProvider(
+          create: (_) => injector.serviceLocator<LiveExamCubit>(),
+        ),
+        //     BlocProvider(
+        //   create: (_) => injector.serviceLocator<LiveExamCubit>(),
         // ),
       ],
       child: BlocBuilder<ProfileCubit, ProfileState>(
