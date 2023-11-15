@@ -310,5 +310,8 @@
   "select_months": "Please select at least one month",
   "eg": " EG",
   "p_complete_order": "please Complete Order payment first!",
-  "enter_coupon": "please enter coupon"
+  "enter_coupon": "please enter coupon",  "exam":"Exams",
+  "live_hero":"Live Heroes"
+
+
 }

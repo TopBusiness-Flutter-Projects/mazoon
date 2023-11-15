@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:new_mazoon/config/routes/app_routes.dart';
 import 'package:new_mazoon/core/utils/assets_manager.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:wave_linear_progress_indicator/wave_linear_progress_indicator.dart';

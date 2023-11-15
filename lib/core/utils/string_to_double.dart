@@ -1,4 +1,4 @@
-resultOfProgress(String degree) {
+double resultOfProgress(String degree) {
   print(degree);
   List<String> parts = degree.toString().split('/');
   double numerator = double.parse(parts[0].trim());

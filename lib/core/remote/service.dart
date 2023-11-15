@@ -32,6 +32,10 @@ import '../models/examlessonmodel.dart';
 import '../models/grade_and_rate.dart';
 import '../models/invitefriend.dart';
 import '../models/lessonexammodel.dart';
+import '../models/liveexamresult.dart';
+import '../models/liveexamsmodel.dart';
+import '../models/liveheroes.dart';
+import '../models/livemonthes.dart';
 import '../models/make_exam_model.dart';
 import '../models/paper_exam_details_model.dart';
 import '../models/final_review_model.dart';
@@ -1637,11 +1641,84 @@ class ServiceApi {
     String lan = await Preferences.instance.getSavedLang();
     try {
       dynamic response = await dio.post(EndPoints.payment + totalPrice,
+          options: Options(
+            headers: {
+              'Authorization': loginModel.data!.token,
+              'Accept-Language': lan
+            },
+          ));
+      return Right(EmptyModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  ///////////////////live
+  //GetLiveExamsModel
+  Future<Either<Failure, GetLiveExamsModel>> getLiveExams() async {
+    UserModel loginModel = await Preferences.instance.getUserModel();
+    String lan = await Preferences.instance.getSavedLang();
+    try {
+      dynamic response = await dio.get(EndPoints.liveExams,
+          options: Options(
+            headers: {
+              'Authorization': loginModel.data!.token,
+              'Accept-Language': lan
+            },
+          ));
+      return Right(GetLiveExamsModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  //GetLiveHeroes
+  Future<Either<Failure, GetLiveHeroesModel>> getLiveHeroes(
+      {required String examId}) async {
+    UserModel loginModel = await Preferences.instance.getUserModel();
+    String lan = await Preferences.instance.getSavedLang();
+    try {
+      dynamic response = await dio.get(EndPoints.liveHeroes + examId,
+          options: Options(
+            headers: {
+              'Authorization': loginModel.data!.token,
+              'Accept-Language': lan
+            },
+          ));
+      return Right(GetLiveHeroesModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  ///selectMonth
+  Future<Either<Failure, LiveHeroMonthes>> getLiveHeroesMonthes() async {
+    UserModel loginModel = await Preferences.instance.getUserModel();
+    String lan = await Preferences.instance.getSavedLang();
+    try {
+      dynamic response = await dio.get(EndPoints.selectMonth,
           options: Options(headers: {
             'Authorization': loginModel.data!.token,
             'Accept-Language': lan
           }));
-      return Right(EmptyModel.fromJson(response));
+      return Right(LiveHeroMonthes.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  //LiveExamResultModel
+  Future<Either<Failure, LiveExamResultModel>> getLiveExamResult(
+      {required String id}) async {
+    UserModel loginModel = await Preferences.instance.getUserModel();
+    String lan = await Preferences.instance.getSavedLang();
+    try {
+      dynamic response = await dio.get(EndPoints.liveExamResult + id,
+          options: Options(headers: {
+            'Authorization': loginModel.data!.token,
+            'Accept-Language': lan
+          }));
+      return Right(LiveExamResultModel.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
     }

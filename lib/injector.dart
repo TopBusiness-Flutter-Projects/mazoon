@@ -21,6 +21,7 @@ import 'features/examinstructions/cubit/examinstructions_cubit.dart';
 import 'features/favourites/cubit/favourite_cubit.dart';
 import 'features/invite_friends/cubit/cubit.dart';
 import 'features/lessonExamScreen/cubit/questionlessonexamcubit.dart';
+import 'features/liveexam/cubit/cubit.dart';
 import 'features/notes/cubit/note_cubit.dart';
 import 'features/notificationpage/cubit/notification_cubit.dart';
 import 'features/paperexamRegister/cubit/paper_exam_register_cubit.dart';
@@ -119,6 +120,9 @@ Future<void> setup() async {
   );
   serviceLocator.registerFactory(
     () => DownloadedFilesCubit(serviceLocator()),
+  );
+  serviceLocator.registerFactory(
+    () => LiveExamCubit(serviceLocator()),
   );
   ///////////////////////////////////////////////////////////////////////////////
 

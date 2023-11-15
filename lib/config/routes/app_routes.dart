@@ -4,6 +4,7 @@ import 'package:new_mazoon/features/change_lang/screen/screen_change.dart';
 import 'package:new_mazoon/features/favourites/screens/favourite_screen.dart';
 import 'package:new_mazoon/features/lessonExamScreen/screens/resultexamscreen.dart';
 import 'package:new_mazoon/features/lessons_of_class/screens/lesson_details.dart';
+import 'package:new_mazoon/features/liveexam/screen/liveexamscreen.dart';
 import 'package:new_mazoon/features/navigation_bottom/screens/navigation_bottom.dart';
 import 'package:new_mazoon/features/onboarding/screens/onbordingscreen.dart';
 import 'package:page_transition/page_transition.dart';
@@ -93,6 +94,7 @@ class Routes {
   static const String notificationScreen = '/notificationScreen';
   static const String settingsNotificationScreen =
       '/notificationSettingsScreen';
+  static const String liveExamScreen = '/LiveExamScreen';
 }
 
 class AppRoutes {
@@ -358,6 +360,13 @@ class AppRoutes {
           duration: const Duration(milliseconds: 800),
         );
       //suggestScreen
+      case Routes.liveExamScreen:
+        return PageTransition(
+          child: LiveExamScreen(),
+          type: PageTransitionType.fade,
+          alignment: Alignment.center,
+          duration: const Duration(milliseconds: 800),
+        );
       default:
         return undefinedRoute();
     }

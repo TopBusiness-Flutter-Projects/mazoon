@@ -1,15 +1,17 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:new_mazoon/core/models/exam_hero.dart';
 import 'package:new_mazoon/core/utils/getsize.dart';
 import 'package:new_mazoon/core/widgets/network_image.dart';
+
+import '../../../core/models/liveheroes.dart';
 import '../../../core/utils/app_colors.dart';
 
-class OrderItemWidget extends StatelessWidget {
-  OrderItemWidget({required this.model, Key? key}) : super(key: key);
+class HeroItem extends StatelessWidget {
+  HeroItem({required this.model, Key? key}) : super(key: key);
   final random = Random();
 
-  CurrentMonthModel model;
+  MyOrdered model;
   @override
   Widget build(BuildContext context) {
     return Stack(

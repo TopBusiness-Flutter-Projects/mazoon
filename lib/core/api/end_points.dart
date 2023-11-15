@@ -103,4 +103,10 @@ class EndPoints {
       '${baseUrl}payments/check-money-paid-with-discount';
   //processed?total_after_discount=360.00
   static const String payment = '${baseUrl}processed?total_after_discount=';
+  static const String liveExams = '${baseUrl}live-exam-all';
+
+  static const String liveHeroes = '${baseUrl}live-exam/heroes/';
+
+  static const String selectMonth = '${baseUrl}live-exam-all/choose-live-exam';
+  static const String liveExamResult = '${baseUrl}live-exam/result/';
 }
