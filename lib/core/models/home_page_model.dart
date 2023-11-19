@@ -30,6 +30,7 @@ class HomePageData {
     this.sliders,
     this.videosBasics,
     this.classes,
+    this.liveModel,
     this.videosResources,
   });
 
@@ -37,10 +38,15 @@ class HomePageData {
   final List<SliderModel>? sliders;
   final List<HomePageVideosModel>? videosBasics;
   final List<AllClasses>? classes;
+  LiveModelClass? liveModel;
+
   final List<FinalReviewModel>? videosResources;
 
   factory HomePageData.fromJson(Map<String, dynamic> json) => HomePageData(
         lifeExam: json["life_exam"],
+        liveModel: json["live_model"] == null
+            ? null
+            : LiveModelClass.fromJson(json["live_model"]),
         sliders: json["sliders"] == null
             ? []
             : List<SliderModel>.from(
@@ -61,6 +67,7 @@ class HomePageData {
 
   Map<String, dynamic> toJson() => {
         "life_exam": lifeExam,
+        "live_model": liveModel!.toJson(),
         "sliders": sliders == null
             ? []
             : List<dynamic>.from(sliders!.map((x) => x.toJson())),
@@ -115,6 +122,59 @@ class SliderModel {
             "${createdAt!.year.toString().padLeft(4, '0')}-${createdAt!.month.toString().padLeft(2, '0')}-${createdAt!.day.toString().padLeft(2, '0')}",
         "updated_at":
             "${updatedAt!.year.toString().padLeft(4, '0')}-${updatedAt!.month.toString().padLeft(2, '0')}-${updatedAt!.day.toString().padLeft(2, '0')}",
+      };
+}
+
+class LiveModelClass {
+  int id;
+  String nameAr;
+  String nameEn;
+  DateTime dateExam;
+  String timeStart;
+  String timeEnd;
+  int degree;
+  int seasonId;
+  int termId;
+  int quizMinute;
+
+  LiveModelClass({
+    required this.id,
+    required this.nameAr,
+    required this.nameEn,
+    required this.dateExam,
+    required this.timeStart,
+    required this.timeEnd,
+    required this.degree,
+    required this.seasonId,
+    required this.termId,
+    required this.quizMinute,
+  });
+
+  factory LiveModelClass.fromJson(Map<String, dynamic> json) => LiveModelClass(
+        id: json["id"],
+        nameAr: json["name_ar"],
+        nameEn: json["name_en"],
+        dateExam: DateTime.parse(json["date_exam"]),
+        timeStart: json["time_start"],
+        timeEnd: json["time_end"],
+        degree: json["degree"],
+        seasonId: json["season_id"],
+        termId: json["term_id"],
+        quizMinute: json["quiz_minute"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "name_ar": nameAr,
+        "name_en": nameEn,
+        "date_exam":
+            "${dateExam.year.toString().padLeft(4, '0')}-${dateExam.month.toString().padLeft(2, '0')}-${dateExam.day.toString().padLeft(2, '0')}",
+        "time_start": timeStart,
+        "time_end": timeEnd,
+        "degree": degree,
+        "season_id": seasonId,
+        "term_id": termId,
+        "quiz_minute": quizMinute,
       };
 }
 

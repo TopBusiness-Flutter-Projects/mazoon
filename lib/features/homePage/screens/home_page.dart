@@ -24,11 +24,8 @@ class _HomePageState extends State<HomePage> {
   bool isLoading = true;
   @override
   void initState() {
-    context
-        .read<HomePageCubit>()
-        .getUserData()
-        .then((value) => context.read<HomePageCubit>().getHomePageData());
-    // context.read<HomePageCubit>().openFirstClass();
+    context.read<HomePageCubit>().getUserData().then((value) =>
+        context.read<HomePageCubit>().getHomePageData(context: context));
     super.initState();
   }
 
@@ -53,7 +50,7 @@ class _HomePageState extends State<HomePage> {
               ConnectivityResult connectivity, Widget child) {
             final bool connected = connectivity != ConnectivityResult.none;
             if (connected) {
-              context.read<HomePageCubit>().getHomePageData();
+              context.read<HomePageCubit>().getHomePageData(context: context);
               return BlocConsumer<HomePageCubit, HomePageState>(
                 listener: (context, state) {
                   if (state is HomePageLoading) {
@@ -68,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                       ? ShowLoadingIndicator()
                       : RefreshIndicator(
                           onRefresh: () async {
-                            cubit.getHomePageData();
+                            cubit.getHomePageData(context: context);
                           },
                           color: AppColors.white,
                           backgroundColor: AppColors.secondPrimary,
@@ -78,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                               SizedBox(height: getSize(context) / 3),
                               BannerWidget(sliderData: cubit.sliders),
                               //
-                              cubit.lifeExam != null
+                              cubit.liveModel != null
                                   ? LiveExamWarningWidget()
                                   : SizedBox(
                                       height: 30,
@@ -118,7 +115,9 @@ class _HomePageState extends State<HomePage> {
             } else {
               return NoDataWidget(
                 onclick: () {
-                  context.read<HomePageCubit>().getHomePageData();
+                  context
+                      .read<HomePageCubit>()
+                      .getHomePageData(context: context);
                 },
                 title: 'no_internet'.tr(),
               );

@@ -79,7 +79,7 @@ class _LiveDropDownListState extends State<LiveDropDownList> {
                               color: AppColors.white,
                               fontSize: getSize(context) / 28,
                               fontWeight:
-                                  title == cubit.examsMonthes[index].name!
+                                  title == cubit.examsMonthes[index].name
                                       ? FontWeight.bold
                                       : null,
                             ),

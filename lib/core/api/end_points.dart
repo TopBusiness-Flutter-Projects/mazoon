@@ -109,4 +109,10 @@ class EndPoints {
 
   static const String selectMonth = '${baseUrl}live-exam-all/choose-live-exam';
   static const String liveExamResult = '${baseUrl}live-exam/result/';
+
+  static const String liveExamQuestions =
+      '${baseUrl}live-exam/all-of-questions/';
+
+  static const String applyLiveExam =
+      '${baseUrl}live-exam/add-exam-by-student/';
 }
