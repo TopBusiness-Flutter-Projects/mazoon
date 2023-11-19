@@ -311,7 +311,8 @@
   "eg": " EG",
   "p_complete_order": "please Complete Order payment first!",
   "enter_coupon": "please enter coupon",  "exam":"Exams",
-  "live_hero":"Live Heroes"
+  "live_hero":"Live Heroes",
+  "live_msg":"you have an live exam at "
 
 
 }

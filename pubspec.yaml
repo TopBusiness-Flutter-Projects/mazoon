@@ -101,6 +101,7 @@ dependencies:
   showcaseview: ^2.0.3
   screenshot_callback: ^3.0.1
   upgrader: 
+  countdown_progress_indicator: ^0.1.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -159,3 +160,6 @@ flutter:
         - asset: assets/fonts/Mada-Medium.ttf
         - asset: assets/fonts/Mada-Regular.ttf
         - asset: assets/fonts/Mada-SemiBold.ttf
+    - family: KeaniaOne
+      fonts:
+        - asset: assets/fonts/KeaniaOne-Regular.ttf

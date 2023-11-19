@@ -39,6 +39,8 @@ class HomePageLiveErrorClass extends HomePageState {}
 
 class HomePageLiveTimerClass extends HomePageState {}
 
+class HomePage2LiveTimerClass extends HomePageState {}
+
 class HomePageApplyLiveLoadingClass extends HomePageState {}
 
 class HomePageApplyLiveLoadedClass extends HomePageState {}
