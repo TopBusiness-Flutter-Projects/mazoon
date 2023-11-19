@@ -2,7 +2,6 @@ class LiveExamResultModel {
   LiveExamResultModelData data;
   String message;
   int code;
-
   LiveExamResultModel({
     required this.data,
     required this.message,
@@ -91,9 +90,9 @@ class Question {
   bool questionStatus;
 
   dynamic question;
-  dynamic? image;
+  dynamic image;
   dynamic answerUserType;
-  int answerUser;
+  int? answerUser;
   int questionDegree;
   List<Answer> answers;
 

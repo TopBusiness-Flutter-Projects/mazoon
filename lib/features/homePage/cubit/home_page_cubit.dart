@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:countdown_progress_indicator/countdown_progress_indicator.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:new_mazoon/core/utils/dialogs.dart';
@@ -76,6 +78,8 @@ class HomePageCubit extends Cubit<HomePageState> {
     );
   }
 
+  final _controller = CountDownController();
+
   int quizMinutes = 0;
   void checkDateTime(
       {required BuildContext context,
@@ -86,15 +90,15 @@ class HomePageCubit extends Cubit<HomePageState> {
     DateTime examDateTime =
         DateTime.parse(dateExam + ' ' + timeStart); // Combine date and time
     DateTime endDateTime = DateTime.parse(dateExam + ' ' + endTime);
-    // Calculate the difference in minutes
-    int minutesDifference = examDateTime.difference(now).inMinutes;
-    int minutesDifferenceEnd = endDateTime.difference(now).inMinutes;
-    // Ensure quizMinutes is non-negative
-    quizMinutes = minutesDifferenceEnd < 0
+    int minutesDifference = examDateTime.difference(now).inMinutes + 1;
+    int minutesDifferenceEnd = endDateTime.difference(now).inMinutes + 1;
+    quizMinutes = minutesDifferenceEnd <= 0
         ? 0
         : minutesDifferenceEnd; // Check if the exam is before now with a 15-minute buffer
     if (minutesDifference <= 15) {
-      if (minutesDifference < 0) {
+      print('case 1');
+      if (minutesDifference <= 0) {
+        print('case 11 $lifeExam');
         lifeExam != null
             ? Navigator.push(
                 context,
@@ -103,50 +107,80 @@ class HomePageCubit extends Cubit<HomePageState> {
                         LiveExamQuestions(examId: lifeExam.toString())))
             : null;
       } else {
+        print('case 12');
         showDialog(
           context: context,
           barrierDismissible: isDialogVisible,
-          barrierColor: Colors.transparent,
+          barrierColor: Colors.black.withOpacity(0.4),
           builder: (BuildContext context) {
             return WillPopScope(
-              onWillPop: () async {
-                return false;
-              },
-              child: AlertDialog(
-                title: Text(
-                  'بعد انتهاء العد تلقائيا سيبدأ امتحان  اللايف اجهز يا بطل ',
-                  maxLines: 2,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: getSize(context) / 22,
-                    fontFamily: 'Cairo',
-                    fontWeight: FontWeight.w400,
-                    height: 0,
-                  ),
-                ),
-                content: CircularPercentIndicator(
-                  backgroundColor: AppColors.offWiite,
-                  radius: getSize(context) / 8,
-                  lineWidth: getSize(context) / 32,
-                  percent: minutesDifference / 60,
-                  center: new Text(
-                    minutesDifference.toString(),
+                onWillPop: () async {
+                  return false;
+                },
+                child: AlertDialog(
+                  shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.circular(getSize(context) / 22)),
+                  shadowColor: Colors.black.withOpacity(0.4),
+                  title: Text(
+                    'بعد انتهاء العد تلقائيا سيبدأ امتحان  اللايف اجهز يا بطل ',
+                    maxLines: 2,
+                    textAlign: TextAlign.center,
                     style: TextStyle(
-                        fontSize: getSize(context) / 32,
-                        fontWeight: FontWeight.w700),
+                      color: Colors.black,
+                      fontSize: getSize(context) / 22,
+                      fontFamily: 'Cairo',
+                      fontWeight: FontWeight.w400,
+                      height: 0,
+                    ),
                   ),
-                  progressColor: AppColors.greenDownloadColor,
-                ),
-              ),
-            );
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        height: 200,
+                        width: 200,
+                        child: CountDownProgressIndicator(
+                          strokeWidth: 12,
+                          controller: _controller,
+                          valueColor: AppColors.blue,
+                          backgroundColor: AppColors.white,
+                          initialPosition: 0,
+                          duration: minutesDifference <= 0
+                              ? 5
+                              : minutesDifference * 60,
+                          // text: 'mm:ss',
+                          onComplete: () {
+                            Navigator.pop(context);
+                            lifeExam != null
+                                ? Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LiveExamQuestions(
+                                            examId: lifeExam.toString())))
+                                : null;
+                          },
+                          timeFormatter: (seconds) {
+                            int minutes = (seconds / 60).floor();
+                            int remainingSeconds = seconds % 60;
+                            String formattedTime =
+                                '${minutes.toString().padLeft(2, '0')}:${remainingSeconds.toString().padLeft(2, '0')}';
+                            // print(formattedTime);
+                            return formattedTime;
+                          },
+                          timeTextStyle: TextStyle(
+                            color: AppColors.primary,
+                            fontSize: getSize(context) / 22,
+                            fontFamily: 'KeaniaOne',
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ));
           },
         );
-        Timer(Duration(seconds: 1), () {
-          if (minutesDifference > 0) {
-            minutesDifference--;
-          }
-          emit(HomePageLiveTimerClass());
-        });
         if (minutesDifference < 0) {
           lifeExam != null
               ? Navigator.push(
@@ -159,6 +193,8 @@ class HomePageCubit extends Cubit<HomePageState> {
       }
     } else if (now.isAtSameMomentAs(examDateTime) &&
         now.isBefore(DateTime.parse(dateExam + ' ' + endTime))) {
+      print('case 2');
+
       showDialog(
         context: context,
         barrierDismissible: isDialogVisible,
@@ -185,17 +221,14 @@ class HomePageCubit extends Cubit<HomePageState> {
             : null;
       }
     } else {
-      showDialog(
-        context: context,
-        barrierDismissible: true,
-        barrierColor: Colors.transparent,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Not Yet'),
-            content: Text('It is not time yet.'),
-          );
-        },
-      );
+      print('case 3');
+      String? lang;
+      Preferences.instance.getSavedLang().then((value) {
+        lang = value;
+      });
+      Fluttertoast.showToast(
+          msg: 'live_msg'.tr() +
+              '${lang == 'en' ? liveModel!.nameEn : liveModel!.nameAr}');
 
       ///exipre exam
     }
@@ -278,7 +311,6 @@ class HomePageCubit extends Cubit<HomePageState> {
       } else if (r.code == 201) {
         Navigator.pop(context);
         Navigator.pop(context);
-
         Navigator.pushNamed(context, Routes.liveExamScreen);
         Fluttertoast.showToast(msg: r.message);
       }
