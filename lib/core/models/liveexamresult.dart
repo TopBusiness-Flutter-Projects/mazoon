@@ -24,8 +24,8 @@ class LiveExamResultModel {
 }
 
 class LiveExamResultModelData {
-  String studentDegree;
-  String motivationalWord;
+  dynamic studentDegree;
+  dynamic motivationalWord;
   int numOfCorrectQuestions;
   int numOfMistakeQuestions;
   int ordered;
@@ -62,7 +62,7 @@ class LiveExamResultModelData {
 
 class ExamQuestions {
   int id;
-  String name;
+  dynamic name;
   List<Question> questions;
 
   ExamQuestions({
@@ -87,12 +87,12 @@ class ExamQuestions {
 
 class Question {
   int id;
-  String questionType;
+  dynamic questionType;
   bool questionStatus;
 
-  String question;
-  String? image;
-  String answerUserType;
+  dynamic question;
+  dynamic? image;
+  dynamic answerUserType;
   int answerUser;
   int questionDegree;
   List<Answer> answers;
@@ -136,9 +136,9 @@ class Question {
 
 class Answer {
   int id;
-  String answer;
-  String answerNumber;
-  String answerStatus;
+  dynamic answer;
+  dynamic answerNumber;
+  dynamic answerStatus;
 
   Answer({
     required this.id,

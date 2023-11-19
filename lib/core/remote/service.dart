@@ -32,6 +32,8 @@ import '../models/examlessonmodel.dart';
 import '../models/grade_and_rate.dart';
 import '../models/invitefriend.dart';
 import '../models/lessonexammodel.dart';
+import '../models/liveexamapplydata.dart';
+import '../models/liveexamquestions.dart';
 import '../models/liveexamresult.dart';
 import '../models/liveexamsmodel.dart';
 import '../models/liveheroes.dart';
@@ -1718,6 +1720,47 @@ class ServiceApi {
             'Authorization': loginModel.data!.token,
             'Accept-Language': lan
           }));
+      return Right(LiveExamResultModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  Future<Either<Failure, LiveExamQuestionModel>> getLiveExamQuestions(
+      {required String id}) async {
+    UserModel loginModel = await Preferences.instance.getUserModel();
+    String lan = await Preferences.instance.getSavedLang();
+    try {
+      dynamic response = await dio.get(EndPoints.liveExamQuestions + id,
+          options: Options(headers: {
+            'Authorization': loginModel.data!.token,
+            'Accept-Language': lan
+          }));
+      return Right(LiveExamQuestionModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  ///applyLiveExam
+  Future<Either<Failure, LiveExamResultModel>> applyLiveExam(
+      {required String id, required List<ApplyLiveExamModel> details}) async {
+    UserModel loginModel = await Preferences.instance.getUserModel();
+    String lan = await Preferences.instance.getSavedLang();
+    try {
+      Map<String, dynamic> requestBody = {};
+      for (int i = 0; i < details.length; i++) {
+        requestBody.addAll(await details[i].toJson(i));
+      }
+      dynamic response = await dio.post(EndPoints.applyLiveExam + id,
+          options: Options(
+            headers: {
+              'Authorization': loginModel.data!.token,
+              'Accept-Language': lan
+            },
+          ),
+          body: requestBody,
+          formDataIsEnabled: true);
       return Right(LiveExamResultModel.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());

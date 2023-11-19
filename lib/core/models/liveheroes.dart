@@ -51,8 +51,8 @@ class MyOrdered {
   String name;
   String country;
   int ordered;
-  int studentTotalDegrees;
-  int examsTotalDegree;
+  dynamic studentTotalDegrees;
+  dynamic examsTotalDegree;
   String image;
   String studentPer;
 

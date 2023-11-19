@@ -7,6 +7,7 @@ import 'package:new_mazoon/core/utils/getsize.dart';
 import 'package:new_mazoon/core/widgets/my_svg_widget.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
+import '../../../core/utils/string_to_double.dart';
 import '../cubit/attachmentcubit.dart';
 import '../cubit/attachmentstate.dart';
 
@@ -40,11 +41,11 @@ class _RateYourSelfScreenState extends State<RateYourSelfScreen> {
             },
             builder: (context, state) {
               var cubit = context.read<AttachmentCubit>();
-              List<String> parts =
-                  cubit.rateYourselfModelData!.fullDegree.toString().split('/');
-              double numerator = double.parse(parts[0].trim());
-              double denominator = double.parse(parts[1].trim());
-              double result = numerator / denominator;
+              // List<String> parts =
+              //     cubit.rateYourselfModelData!.fullDegree.toString().split('/');
+              // double numerator = double.parse(parts[0].trim());
+              // double denominator = double.parse(parts[1].trim());
+              // double result = numerator / denominator;
               return isLoading
                   ? Center(
                       child: CircularProgressIndicator(),
@@ -68,9 +69,12 @@ class _RateYourSelfScreenState extends State<RateYourSelfScreen> {
                                   backgroundColor: AppColors.offWiite,
                                   radius: getSize(context) / 8,
                                   lineWidth: getSize(context) / 32,
-                                  percent: result,
-                                  center: new Text(
-                                      '${denominator.round()} / ${numerator.round()}'),
+                                  percent: resultOfProgress(cubit
+                                      .rateYourselfModelData!.fullDegree
+                                      .toString()),
+                                  center: new Text(cubit
+                                      .rateYourselfModelData!.fullDegree
+                                      .toString()),
                                   progressColor: AppColors.greenDownloadColor,
                                 )
                               ],

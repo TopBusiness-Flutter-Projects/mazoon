@@ -20,7 +20,7 @@ class LiveExamCubit extends Cubit<LiveExamState> {
 
   GetLiveHeroesModelData? liveHeroes;
   List<GetLiveExamsModelData> liveExams = [];
-  GetLiveHeroesModelData? anotherliveHeroes;
+  List<MyOrdered> allExamHeroes = [];
   getLiveExams() async {
     emit(LoadingLiveExamState());
     final response = await api.getLiveExams();
@@ -57,6 +57,9 @@ class LiveExamCubit extends Cubit<LiveExamState> {
       emit(ErrorLiveHeroesState());
     }, (r) {
       liveHeroes = r.data;
+      allExamHeroes = r.data.allExamHeroes.length > 3
+          ? r.data.allExamHeroes.sublist(3)
+          : [];
       emit(LoadedLiveHeroesState());
     });
   }

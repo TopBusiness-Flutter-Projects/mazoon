@@ -19,10 +19,7 @@ bool isloading = true;
 class _LiveHeroesState extends State<LiveHeroes> {
   @override
   void initState() {
-    context.read<LiveExamCubit>().getLiveHeroes(examId: '1').then((value) {
-      context.read<LiveExamCubit>().anotherliveHeroes!.allExamHeroes =
-          context.read<LiveExamCubit>().liveHeroes!.allExamHeroes.sublist(3);
-    });
+    context.read<LiveExamCubit>();
 
     super.initState();
   }
@@ -60,12 +57,10 @@ class _LiveHeroesState extends State<LiveHeroes> {
                             : ListView.builder(
                                 shrinkWrap: true,
                                 physics: const BouncingScrollPhysics(),
-                                itemCount: cubit
-                                    .anotherliveHeroes!.allExamHeroes.length,
+                                itemCount: cubit.allExamHeroes.length,
                                 itemBuilder: (context, index) {
                                   return HeroItem(
-                                      model: cubit.anotherliveHeroes!
-                                          .allExamHeroes[index]);
+                                      model: cubit.allExamHeroes[index]);
                                 },
                               )
                       ],

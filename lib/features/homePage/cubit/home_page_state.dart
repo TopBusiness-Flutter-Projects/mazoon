@@ -30,3 +30,17 @@ class UserScreenshotLoadingClass extends HomePageState {}
 class UserScreenshotLoadedClass extends HomePageState {}
 
 class UserScreenshotErrorClass extends HomePageState {}
+
+class HomePageLiveLoadingClass extends HomePageState {}
+
+class HomePageLiveLoadedClass extends HomePageState {}
+
+class HomePageLiveErrorClass extends HomePageState {}
+
+class HomePageLiveTimerClass extends HomePageState {}
+
+class HomePageApplyLiveLoadingClass extends HomePageState {}
+
+class HomePageApplyLiveLoadedClass extends HomePageState {}
+
+class HomePageApplyLiveErrorClass extends HomePageState {}
