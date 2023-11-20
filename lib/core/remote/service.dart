@@ -39,6 +39,7 @@ import '../models/liveexamsmodel.dart';
 import '../models/liveheroes.dart';
 import '../models/livemonthes.dart';
 import '../models/make_exam_model.dart';
+import '../models/noti_tokem_model.dart';
 import '../models/paper_exam_details_model.dart';
 import '../models/final_review_model.dart';
 import '../models/home_page_model.dart';
@@ -322,6 +323,30 @@ class ServiceApi {
     }
   }
 
+  Future<Either<Failure, NotificationTokenModel>> notificationToken(
+      {required String notiToken, required String phoneType}) async {
+    UserModel userModel = await Preferences.instance.getUserModel();
+    String lan = await Preferences.instance.getSavedLang();
+    print('lan : $lan');
+    try {
+      final response = await dio.post(
+        EndPoints.notificationToken,
+        body: {"token": notiToken, "phone_type": phoneType},
+        formDataIsEnabled: true,
+        options: Options(
+          headers: {
+            'Authorization': userModel.data!.token,
+            'Accept-Language': lan
+          },
+        ),
+      );
+      return Right(NotificationTokenModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+////auth/add-device-token   notificationToken
   Future<Either<Failure, MothPlanModel>> getMonthPlans(String date) async {
     UserModel userModel = await Preferences.instance.getUserModel();
     String lan = await Preferences.instance.getSavedLang();

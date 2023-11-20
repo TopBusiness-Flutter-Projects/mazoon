@@ -24,3 +24,9 @@ class userCommunicationError extends LoginState {}
 class DeviceTokenSuccess extends LoginState {}
 
 class DeviceTokenError extends LoginState {}
+
+class setNotificationTokenLoading extends LoginState {}
+
+class setNotificationTokenLoaded extends LoginState {}
+
+class setNotificationTokenError extends LoginState {}

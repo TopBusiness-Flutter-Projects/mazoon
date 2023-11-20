@@ -19,7 +19,9 @@ bool isloading = true;
 class _LiveHeroesState extends State<LiveHeroes> {
   @override
   void initState() {
-    context.read<LiveExamCubit>();
+    context.read<LiveExamCubit>().getLiveHeroes(
+        examId: context.read<LiveExamCubit>().examsMonthes[0].id.toString());
+    ;
 
     super.initState();
   }

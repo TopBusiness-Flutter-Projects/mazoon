@@ -1,7 +1,7 @@
+import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
-
 import '../../../config/routes/app_routes.dart';
 import '../../../core/models/user_model.dart';
 import '../../../core/preferences/preferences.dart';
@@ -59,6 +59,27 @@ class LoginCubit extends Cubit<LoginState> {
           );
           emit(userLoaded(response));
         }
+      },
+    );
+  }
+
+  // Future<String> getDeviceInfo()  {
+  //   if () {
+  //   } else if (Platform.isIOS) {
+  //     return "Apple";
+  //   }
+  // }
+
+  Future<void> setNotificationToken({required String notiToken}) async {
+    emit(setNotificationTokenLoading());
+    final response = await api.notificationToken(
+      notiToken: notiToken,
+      phoneType: Platform.isAndroid ? "android" : "Apple",
+    );
+    response.fold(
+      (error) => emit(setNotificationTokenError()),
+      (response) {
+        emit(setNotificationTokenLoaded());
       },
     );
   }

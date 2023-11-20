@@ -1,15 +1,3 @@
-// To parse this JSON data, do
-//
-//     final notificationsModel = notificationsModelFromJson(jsonString);
-
-import 'dart:convert';
-
-NotificationsModel notificationsModelFromJson(String str) =>
-    NotificationsModel.fromJson(json.decode(str));
-
-String notificationsModelToJson(NotificationsModel data) =>
-    json.encode(data.toJson());
-
 class NotificationsModel {
   NotificationsModel({
     this.data,
@@ -30,51 +18,66 @@ class NotificationsModel {
 
 class NotificationModel {
   NotificationModel({
-    this.id,
-    this.title,
-    this.body,
-    this.type,
-    this.seen,
-    this.serviceId,
-    this.image,
-    this.createdAt,
-    this.updatedAt,
+    required this.id,
+    required this.title,
+    required this.body,
+    required this.notificationType,
+    required this.videoType,
+    required this.videoId,
+    required this.examType,
+    required this.examId,
+    required this.seen,
+    required this.image,
+    required this.timeOfNotification,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
-  int? id;
-  String? title;
-  String? body;
-  String? type;
-  String? seen;
-  int? serviceId;
-  String? image;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-
+  int id;
+  String title;
+  String body;
+  String notificationType;
+  dynamic videoType;
+  dynamic videoId;
+  dynamic examType;
+  dynamic examId;
+  String seen;
+  dynamic image;
+  String timeOfNotification;
+  DateTime createdAt;
+  DateTime updatedAt;
   factory NotificationModel.fromJson(Map<String, dynamic> json) =>
       NotificationModel(
         id: json["id"],
-        title: json["title"] != null ? json["title"] : '',
-        body: json["body"] != null ? json["body"] : '',
-        createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
-        updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
-        image: json["image"] != null ? json["image"] : '',
-        seen:json["seen"] ,
-        serviceId: json["service_id"],
-        type:  json["type"] != null ? json["type"] : '',
+        title: json["title"],
+        body: json["body"],
+        notificationType: json["notification_type"],
+        videoType: json["video_type"],
+        videoId: json["video_id"],
+        examType: json["exam_type"],
+        examId: json["exam_id"],
+        seen: json["seen"],
+        image: json["image"],
+        timeOfNotification: json["time_of_notification"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "title": title,
         "body": body,
-    "created_at": "${createdAt!.year.toString().padLeft(4, '0')}-${createdAt!.month.toString().padLeft(2, '0')}-${createdAt!.day.toString().padLeft(2, '0')}",
-    "updated_at": "${updatedAt!.year.toString().padLeft(4, '0')}-${updatedAt!.month.toString().padLeft(2, '0')}-${updatedAt!.day.toString().padLeft(2, '0')}",
-        // "created_at": createdAt,
-        // "updated_at": updatedAt,
-        "service_id":serviceId,
-       "type":type,
-       "seen":seen,
-       "image":image
+        "notification_type": notificationType,
+        "video_type": videoType,
+        "video_id": videoId,
+        "exam_type": examType,
+        "exam_id": examId,
+        "seen": seen,
+        "image": image,
+        "time_of_notification": timeOfNotification,
+        "created_at":
+            "${createdAt.year.toString().padLeft(4, '0')}-${createdAt.month.toString().padLeft(2, '0')}-${createdAt.day.toString().padLeft(2, '0')}",
+        "updated_at":
+            "${updatedAt.year.toString().padLeft(4, '0')}-${updatedAt.month.toString().padLeft(2, '0')}-${updatedAt.day.toString().padLeft(2, '0')}",
       };
 }

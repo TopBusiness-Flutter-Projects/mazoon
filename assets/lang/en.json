@@ -7,6 +7,7 @@
   "contact_us": "Contact Us",
   "call_us": "Call Us",
   "videos": "Videos",
+
   "no_notifications": "No Notifications Till Now",
   "register_paper_exam": "Register for the paper exam",
   "register_data_enter_exam": "Register your data to be able to enter the exam",
@@ -313,6 +314,5 @@
   "enter_coupon": "please enter coupon",  "exam":"Exams",
   "live_hero":"Live Heroes",
   "live_msg":"you have an live exam at "
-
 
 }

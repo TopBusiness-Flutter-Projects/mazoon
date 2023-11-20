@@ -2,11 +2,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_offline/flutter_offline.dart';
+import 'package:new_mazoon/features/login/cubit/login_cubit.dart';
 import '../../../../core/widgets/banner.dart';
 import '../../../../core/widgets/no_data_widget.dart';
 import '../../../../core/widgets/show_loading_indicator.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/getsize.dart';
+import '../../../main.dart';
 import '../cubit/home_page_cubit.dart';
 import '../widget/final_review_widget.dart';
 import '../widget/home_page_start_study_widget.dart';
@@ -24,6 +26,9 @@ class _HomePageState extends State<HomePage> {
   bool isLoading = true;
   @override
   void initState() {
+    getToken().then((e) {
+      context.read<LoginCubit>().setNotificationToken(notiToken: e);
+    });
     context.read<HomePageCubit>().getUserData().then((value) =>
         context.read<HomePageCubit>().getHomePageData(context: context));
     super.initState();
