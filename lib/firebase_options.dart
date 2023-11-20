@@ -44,42 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDCcUguHOyIxl7zUXaXF4q8RZgCQtfvClE',
-    appId: '1:815170067345:web:dbf591ace61fc3a421d830',
-    messagingSenderId: '815170067345',
-    projectId: 'elmazon',
-    authDomain: 'elmazon.firebaseapp.com',
-    storageBucket: 'elmazon.appspot.com',
-    measurementId: 'G-QDHYNTH50Q',
+    apiKey: 'AIzaSyCb3vcvRkeE_YA9gl1Nv5rDGtF9_uaCUgM',
+    appId: '1:657137959635:web:af80d7d4f48b3b579fca26',
+    messagingSenderId: '657137959635',
+    projectId: 'elmazon1',
+    authDomain: 'elmazon1.firebaseapp.com',
+    storageBucket: 'elmazon1.appspot.com',
+    measurementId: 'G-XX99H9N3WL',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAsewnFrvnkbaQ00Zxxn6130560Aj28-jE',
-    appId: '1:815170067345:android:33656b2c9e010e3b21d830',
-    messagingSenderId: '815170067345',
-    projectId: 'elmazon',
-    storageBucket: 'elmazon.appspot.com',
+    apiKey: 'AIzaSyD1g4ecX8SKbJQCe2t67nRJu1lndPEKxoo',
+    appId: '1:657137959635:android:6ef7e93ecf92b9439fca26',
+    messagingSenderId: '657137959635',
+    projectId: 'elmazon1',
+    storageBucket: 'elmazon1.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAzTRaq7SoJ8MTLa3Upxnu8f4Cn0CDAxcc',
-    appId: '1:815170067345:ios:fe693df1405b826221d830',
-    messagingSenderId: '815170067345',
-    projectId: 'elmazon',
-    storageBucket: 'elmazon.appspot.com',
-    iosClientId:
-        '815170067345-p03cdoe09s7b143hn5dejenamj4cgbo2.apps.googleusercontent.com',
+    apiKey: 'AIzaSyDmgew1nCR6fEv2r8OPS7uZsUT0TbRdw98',
+    appId: '1:657137959635:ios:7022481ebee014289fca26',
+    messagingSenderId: '657137959635',
+    projectId: 'elmazon1',
+    storageBucket: 'elmazon1.appspot.com',
     iosBundleId: 'com.topbusiness.newMazoon',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAzTRaq7SoJ8MTLa3Upxnu8f4Cn0CDAxcc',
-    appId: '1:815170067345:ios:fe693df1405b826221d830',
-    messagingSenderId: '815170067345',
-    projectId: 'elmazon',
-    storageBucket: 'elmazon.appspot.com',
-    iosClientId:
-        '815170067345-p03cdoe09s7b143hn5dejenamj4cgbo2.apps.googleusercontent.com',
+    apiKey: 'AIzaSyDmgew1nCR6fEv2r8OPS7uZsUT0TbRdw98',
+    appId: '1:657137959635:ios:7022481ebee014289fca26',
+    messagingSenderId: '657137959635',
+    projectId: 'elmazon1',
+    storageBucket: 'elmazon1.appspot.com',
     iosBundleId: 'com.topbusiness.newMazoon',
   );
 }

@@ -5,12 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:new_mazoon/features/attachment/cubit/attachmentcubit.dart';
 import 'package:new_mazoon/features/elmazoon_info/cubit/cubit.dart';
 import 'package:new_mazoon/features/make_exam/cubit/cubit.dart';
 import 'package:new_mazoon/features/monthplan/cubit/month_cubit.dart';
 import 'package:new_mazoon/features/profilescreen/cubit/state.dart';
+import 'package:new_mazoon/main.dart';
 import 'package:quick_actions/quick_actions.dart';
 import 'package:screenshot_callback/screenshot_callback.dart';
 // import 'package:screenshot_callback/screenshot_callback.dart';
@@ -126,7 +128,7 @@ class _ElmazoonState extends State<Elmazoon> with WidgetsBindingObserver {
         }
       });
     });
-    // Handle incoming message when the app is in the foreground
+    //Cloud messaging step 4 forground motification
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       print('Got a message whilst in the foreground!');
       print('Message data: ${message.data}');
@@ -134,7 +136,24 @@ class _ElmazoonState extends State<Elmazoon> with WidgetsBindingObserver {
       if (message.notification != null) {
         print('Message also contained a notification: ${message.notification}');
 
-        // You can show a local notification or update your app UI here
+        ///now i have message i want show notification
+        RemoteNotification? notification = message.notification;
+        AndroidNotification? android = message.notification?.android;
+        if (notification != null && android != null) {
+          flutterLocalNotificationsPlugin.show(
+            notification.hashCode,
+            notification.title,
+            notification.body,
+            NotificationDetails(
+              android: AndroidNotificationDetails(
+                channel.id,
+                channel.name,
+                channelDescription: channel.description,
+                icon: 'launch_background',
+              ),
+            ),
+          );
+        }
       }
     });
   }

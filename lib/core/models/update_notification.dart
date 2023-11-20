@@ -6,9 +6,11 @@ import 'dart:convert';
 
 import 'notifications_model.dart';
 
-UpdateNotification updateNotificationFromJson(String str) => UpdateNotification.fromJson(json.decode(str));
+UpdateNotification updateNotificationFromJson(String str) =>
+    UpdateNotification.fromJson(json.decode(str));
 
-String updateNotificationToJson(UpdateNotification data) => json.encode(data.toJson());
+String updateNotificationToJson(UpdateNotification data) =>
+    json.encode(data.toJson());
 
 class UpdateNotification {
   final NotificationModel? data;
@@ -21,17 +23,20 @@ class UpdateNotification {
     this.code,
   });
 
-  factory UpdateNotification.fromJson(Map<String, dynamic> json) => UpdateNotification(
-    data: json["data"] == null ? null : NotificationModel.fromJson(json["data"]),
-    message: json["message"],
-    code: json["code"],
-  );
+  factory UpdateNotification.fromJson(Map<String, dynamic> json) =>
+      UpdateNotification(
+        data: json["data"] == null
+            ? null
+            : NotificationModel.fromJson(json["data"]),
+        message: json["message"],
+        code: json["code"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "data": data?.toJson(),
-    "message": message,
-    "code": code,
-  };
+        "data": data?.toJson(),
+        "message": message,
+        "code": code,
+      };
 }
 //
 // class Data {

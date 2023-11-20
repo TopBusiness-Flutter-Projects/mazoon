@@ -102,6 +102,7 @@ dependencies:
   screenshot_callback: ^3.0.1
   upgrader: 
   countdown_progress_indicator: ^0.1.2
+  device_info_plus: 
 dev_dependencies:
   flutter_test:
     sdk: flutter

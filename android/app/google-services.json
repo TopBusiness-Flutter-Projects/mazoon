@@ -1,79 +1,26 @@
 {
   "project_info": {
-    "project_number": "815170067345",
-    "project_id": "elmazon",
-    "storage_bucket": "elmazon.appspot.com"
+    "project_number": "657137959635",
+    "project_id": "elmazon1",
+    "storage_bucket": "elmazon1.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:815170067345:android:90e274aa78ea27bf21d830",
-        "android_client_info": {
-          "package_name": "com.topbusiness.elmazoon"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "815170067345-aaeo846tsj21da2jpvql370l2ikih7pd.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAsewnFrvnkbaQ00Zxxn6130560Aj28-jE"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "815170067345-aaeo846tsj21da2jpvql370l2ikih7pd.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "815170067345-vghubqn4v8htgh0udhsa99e9nsgflnlb.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.topbusiness.elmazoon"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:815170067345:android:33656b2c9e010e3b21d830",
+        "mobilesdk_app_id": "1:657137959635:android:6ef7e93ecf92b9439fca26",
         "android_client_info": {
           "package_name": "com.topbusiness.new_mazoon"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "815170067345-aaeo846tsj21da2jpvql370l2ikih7pd.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAsewnFrvnkbaQ00Zxxn6130560Aj28-jE"
+          "current_key": "AIzaSyD1g4ecX8SKbJQCe2t67nRJu1lndPEKxoo"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "815170067345-aaeo846tsj21da2jpvql370l2ikih7pd.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "815170067345-vghubqn4v8htgh0udhsa99e9nsgflnlb.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.topbusiness.elmazoon"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

@@ -1,17 +1,13 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:countdown_progress_indicator/countdown_progress_indicator.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:intl/intl.dart';
 import 'package:new_mazoon/core/utils/dialogs.dart';
 import 'package:new_mazoon/core/utils/show_dialog.dart';
 import 'package:new_mazoon/features/liveexam/screen/liveexamresult.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
-
 import '../../../../core/models/user_model.dart';
 import '../../../../core/preferences/preferences.dart';
 import '../../../config/routes/app_routes.dart';
@@ -22,9 +18,7 @@ import '../../../core/models/liveexamquestions.dart';
 import '../../../core/remote/service.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/getsize.dart';
-import '../../../core/utils/string_to_double.dart';
 import '../../liveexam/screen/liveexamquestions.dart';
-
 part 'home_page_state.dart';
 
 class HomePageCubit extends Cubit<HomePageState> {
@@ -44,9 +38,8 @@ class HomePageCubit extends Cubit<HomePageState> {
   List<HomePageVideosModel> videosBasics = [];
   List<FinalReviewModel> videosResources = [];
   dynamic lifeExam;
-
   bool isDialogVisible = false;
-
+  int notiCount = 0;
   getHomePageData({
     required BuildContext context,
   }) async {
@@ -61,6 +54,7 @@ class HomePageCubit extends Cubit<HomePageState> {
         videosResources = res.data!.videosResources!;
         lifeExam = res.data!.lifeExam;
         liveModel = res.data!.liveModel;
+        notiCount = res.data!.notificationCount;
         if (res.data!.liveModel != null) {
           Timer(Duration(seconds: 2), () {
             checkDateTime(
@@ -293,6 +287,7 @@ class HomePageCubit extends Cubit<HomePageState> {
     }
   }
 
+  ///apply live
   applyLiveExam({required BuildContext context}) async {
     createProgressDialog(context, 'wait'.tr());
     emit(HomePageApplyLiveLoadingClass());
