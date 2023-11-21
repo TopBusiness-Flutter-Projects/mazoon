@@ -6,12 +6,14 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:new_mazoon/config/routes/app_routes.dart';
+import 'package:new_mazoon/core/preferences/preferences.dart';
 import 'package:new_mazoon/injector.dart' as injector;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:screenshot_callback/screenshot_callback.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:upgrader/upgrader.dart';
 import 'dart:async';
 import 'app.dart';
@@ -19,7 +21,6 @@ import 'app_bloc_observer.dart';
 import 'core/utils/app_colors.dart';
 import 'core/utils/restart_app_class.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'features/login/cubit/login_cubit.dart';
 import 'firebase_options.dart';
 import 'package:showcaseview/showcaseview.dart';
 
@@ -27,7 +28,7 @@ import 'package:showcaseview/showcaseview.dart';
 FirebaseMessaging messaging = FirebaseMessaging.instance;
 
 ///Cloud messaging step 1
-
+final navigatorKey = GlobalKey<NavigatorState>();
 FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 NotificationDetails notificationDetails = NotificationDetails(
@@ -136,10 +137,11 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
           channel.id,
           channel.name,
           channelDescription: channel.description,
-          icon: 'launch_background',
+          icon: '@drawable/ic_launcher',
         ),
       ),
     );
+    navigatorKey.currentState?.pushNamed(Routes.homePageScreenRoute);
   }
 
   ///show notification
@@ -149,9 +151,25 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 final locator = GetIt.instance;
 
-late AndroidNotificationChannel channel = const AndroidNotificationChannel(
-  'high_importance_channel_elmazon1', // id
-  'High Importance Notifications_elmazon1', // title
+late AndroidNotificationChannel channel = AndroidNotificationChannel(
+  Preferences.instance.notiSound
+      ? Preferences.instance.notiVisbrate
+          ? "High Importance Notifications_elmazon44"
+          : Preferences.instance.notiLight
+              ? 'high_importance_channel_elmazon55'
+              : 'high_importance_channel_elmazon22'
+      : 'high_importance_channel_elmazon33', // id
+  Preferences.instance.notiSound
+      ? Preferences.instance.notiVisbrate
+          ? "high_importance_channel_elmazon3"
+          : Preferences.instance.notiLight
+              ? 'high_importance_channel_elmazon5'
+              : 'high_importance_channel_elmazon2'
+      : 'high_importance_channel_elmazon1', // title
   description: "this notification for elmazon1",
   importance: Importance.high,
+  enableVibration: Preferences.instance.notiVisbrate,
+  playSound: Preferences.instance.notiSound,
+
+  enableLights: Preferences.instance.notiLight,
 );

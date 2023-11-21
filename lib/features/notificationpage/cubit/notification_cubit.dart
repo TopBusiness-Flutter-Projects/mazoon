@@ -8,6 +8,7 @@ import 'package:new_mazoon/features/navigation_bottom/cubit/navigation_cubit.dar
 import '../../../../core/models/notifications_model.dart';
 import '../../../../core/remote/service.dart';
 import '../../../config/routes/app_routes.dart';
+import '../../../core/preferences/preferences.dart';
 
 part 'notification_state.dart';
 
@@ -19,10 +20,19 @@ class NotificationCubit extends Cubit<NotificationState> {
   List<NotificationModel>? data;
   final ServiceApi api;
   // UpdateNotification? updateNotification;
-  final List<bool> switches = List.generate(3, (index) => true);
+  // final List<bool> switches = List.generate(3, (index) => true);
 
-  changeSwitch(bool value, index) {
-    switches[index] = value;
+  changeSwitch(bool value, index) async {
+    if (index == 0) {
+      await Preferences.instance.setNotiSound(status: value);
+      await Preferences.instance.getNotiSound();
+    } else if (index == 1) {
+      await Preferences.instance.setNotiVibrate(status: value);
+      await Preferences.instance.getNotiVibrate();
+    } else {
+      await Preferences.instance.setNotiLights(status: value);
+      await Preferences.instance.getNotiLights();
+    }
     emit(ChangingSwitchCaseState());
   }
 

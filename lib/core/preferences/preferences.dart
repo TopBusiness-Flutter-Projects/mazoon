@@ -23,6 +23,45 @@ class Preferences {
     return jsonData;
   }
 
+  ////notification
+  bool notiSound = true;
+  bool notiVisbrate = true;
+  bool notiLight = true;
+
+  Future<void> setNotiSound({bool status = true}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('notiSound', status);
+  }
+
+  Future<bool?> getNotiSound() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    notiSound = prefs.getBool('notiSound') ?? true;
+    return notiSound;
+  }
+
+  Future<void> setNotiVibrate({bool status = true}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('notiVibrate', status);
+  }
+
+  Future<bool?> getNotiVibrate() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    notiVisbrate = prefs.getBool('notiVibrate') ?? true;
+    return notiVisbrate;
+  }
+
+  Future<void> setNotiLights({bool status = true}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('notiLights', status);
+  }
+
+  Future<bool?> getNotiLights() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    notiLight = prefs.getBool('notiLights') ?? true;
+    return notiLight;
+  }
+  //////////////////////////////////
+
   Future<String> getPrimaryColor() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString('primaryColor') ?? '#4455D7';
