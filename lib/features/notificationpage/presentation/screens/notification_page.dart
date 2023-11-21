@@ -69,14 +69,18 @@ class _NotificationScreenState extends State<NotificationScreen> {
                               child: cubit.data!.length > 0
                                   ? Column(
                                       children: [
-                                        Expanded(
+                                        Flexible(
+                                          fit: FlexFit.tight,
                                           child: ListView(
                                             children: [
                                               SizedBox(
                                                   height: getSize(context) / 3),
-                                              TitleWithCircleBackgroundWidget(
-                                                title: 'notifications'.tr(),
-                                                width: double.infinity,
+                                              Container(
+                                                child:
+                                                    TitleWithCircleBackgroundWidget(
+                                                  title: 'notifications'.tr(),
+                                                  width: double.infinity,
+                                                ),
                                               ),
                                               ...List.generate(
                                                   cubit.data != null
@@ -129,23 +133,26 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                         )
                                       ],
                                     )
-                                  : Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Image.asset(ImageAssets.sleepyImage),
-                                        SizedBox(
-                                          height: 20,
-                                        ),
-                                        Text(
-                                          "no_notifications",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 20),
-                                        ).tr()
-                                      ],
+                                  : Center(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Image.asset(ImageAssets.sleepyImage,
+                                              width: getSize(context) / 4),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          Text(
+                                            "no_notifications",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 20),
+                                          ).tr()
+                                        ],
+                                      ),
                                     ),
                             );
                     },

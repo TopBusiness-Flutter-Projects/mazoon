@@ -71,6 +71,24 @@ class NotificationSettingsScreen extends StatelessWidget {
                                               : Preferences.instance.notiLight,
                                       onChanged: (value) async {
                                         cubit.changeSwitch(value, index);
+                                        Preferences.instance
+                                            .getNotiVibrate()
+                                            .then((value) {
+                                          Preferences.instance.notiVisbrate =
+                                              value ?? false;
+                                        });
+                                        Preferences.instance
+                                            .getNotiSound()
+                                            .then((value) {
+                                          Preferences.instance.notiSound =
+                                              value ?? false;
+                                        });
+                                        Preferences.instance
+                                            .getNotiLights()
+                                            .then((value) {
+                                          Preferences.instance.notiLight =
+                                              value ?? false;
+                                        });
                                       },
                                       activeColor: Colors.white,
                                       activeTrackColor: Colors.orange,
@@ -105,7 +123,7 @@ class NotificationSettingsScreen extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: getSize(context) * 0.27,
+                  top: getSize(context) * 0.34,
                   child:
                       TitleWithCircleBackgroundWidget(title: 'notifications'),
                 )

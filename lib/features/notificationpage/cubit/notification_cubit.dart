@@ -23,15 +23,23 @@ class NotificationCubit extends Cubit<NotificationState> {
   // final List<bool> switches = List.generate(3, (index) => true);
 
   changeSwitch(bool value, index) async {
+    emit(LoadingChangingSwitchCaseState());
     if (index == 0) {
-      await Preferences.instance.setNotiSound(status: value);
-      await Preferences.instance.getNotiSound();
+      await Preferences.instance.setNotiSound(status: value).then((value) {
+        Preferences.instance.getNotiSound().then((value) {
+          Preferences.instance.notiSound = value ?? false;
+        });
+      });
     } else if (index == 1) {
       await Preferences.instance.setNotiVibrate(status: value);
-      await Preferences.instance.getNotiVibrate();
+      Preferences.instance.getNotiVibrate().then((value) {
+        Preferences.instance.notiVisbrate = value ?? false;
+      });
     } else {
       await Preferences.instance.setNotiLights(status: value);
-      await Preferences.instance.getNotiLights();
+      Preferences.instance.getNotiLights().then((value) {
+        Preferences.instance.notiLight = value ?? false;
+      });
     }
     emit(ChangingSwitchCaseState());
   }

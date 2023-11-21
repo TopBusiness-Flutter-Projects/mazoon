@@ -214,6 +214,10 @@ class _ElmazoonState extends State<Elmazoon> with WidgetsBindingObserver {
     ProfileCubit.getSavedMode().then((value) {
       ProfileCubit.mode = value;
     });
+    Preferences.instance.getNotiSound();
+    Preferences.instance.getNotiVibrate();
+    Preferences.instance.getNotiLights();
+
     screenshotCallback.addListener(() {
       print('make screen shot');
       // BlocProvider.of<HomePageCubit>(context).userScreenshot();
