@@ -44,6 +44,9 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  Preferences.instance.getNotiLights();
+  Preferences.instance.getNotiSound();
+  Preferences.instance.getNotiVibrate();
 
   ///Cloud messaging step 2
 
@@ -154,19 +157,19 @@ final locator = GetIt.instance;
 late AndroidNotificationChannel channel = AndroidNotificationChannel(
   Preferences.instance.notiSound
       ? Preferences.instance.notiVisbrate
-          ? "High Importance Notifications_elmazon44"
+          ? "High Importance Notifications_elma474"
           : Preferences.instance.notiLight
-              ? 'high_importance_channel_elmazon55'
-              : 'high_importance_channel_elmazon22'
-      : 'high_importance_channel_elmazon33', // id
+              ? 'high_importance_channel_elmaz55'
+              : 'high_importance_channel_elmazo52'
+      : 'high_importance_channel_elma53', // id
   Preferences.instance.notiSound
       ? Preferences.instance.notiVisbrate
-          ? "high_importance_channel_elmazon3"
+          ? "high_importance_channel_elm3"
           : Preferences.instance.notiLight
-              ? 'high_importance_channel_elmazon5'
-              : 'high_importance_channel_elmazon2'
-      : 'high_importance_channel_elmazon1', // title
-  description: "this notification for elmazon1",
+              ? 'high_importance_channel_elmn5'
+              : 'high_importance_channel_eazon2'
+      : 'high_importance_channel_elmazo', // title
+  description: "this notification elmazon1",
   importance: Importance.high,
   enableVibration: Preferences.instance.notiVisbrate,
   playSound: Preferences.instance.notiSound,
