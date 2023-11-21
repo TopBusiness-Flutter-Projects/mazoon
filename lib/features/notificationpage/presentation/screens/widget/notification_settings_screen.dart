@@ -89,6 +89,11 @@ class NotificationSettingsScreen extends StatelessWidget {
                                           Preferences.instance.notiLight =
                                               value ?? false;
                                         });
+
+                                        print(Preferences.instance.notiSound);
+                                        print(
+                                            Preferences.instance.notiVisbrate);
+                                        print(Preferences.instance.notiLight);
                                       },
                                       activeColor: Colors.white,
                                       activeTrackColor: Colors.orange,
