@@ -149,11 +149,12 @@ class _ElmazoonState extends State<Elmazoon> with WidgetsBindingObserver {
                 channel.id,
                 channel.name,
                 channelDescription: channel.description,
-                icon: 'launch_background',
+                icon: '@drawable/ic_launcher',
               ),
             ),
           );
         }
+        // navigatorKey.currentState?.pushNamed(Routes.homePageScreenRoute);
       }
     });
   }
@@ -329,6 +330,7 @@ class _ElmazoonState extends State<Elmazoon> with WidgetsBindingObserver {
       child: BlocBuilder<ProfileCubit, ProfileState>(
         builder: (context, state) {
           return GetMaterialApp(
+            navigatorKey: navigatorKey,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
             theme: ProfileCubit.mode ? appDarkTheme() : appTheme(),

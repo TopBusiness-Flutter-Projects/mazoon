@@ -8,7 +8,6 @@ import 'package:new_mazoon/features/homePage/cubit/home_page_cubit.dart';
 import '../../../core/models/liveexamapplydata.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import '../../../core/utils/app_colors.dart';
-import '../../../core/widgets/minutes_to_hour.dart';
 
 class LiveExamQuestions extends StatefulWidget {
   LiveExamQuestions({required this.examId, super.key});
