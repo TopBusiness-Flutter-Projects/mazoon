@@ -70,7 +70,8 @@ class NotificationSettingsScreen extends StatelessWidget {
                                                   .instance.notiVisbrate
                                               : Preferences.instance.notiLight,
                                       onChanged: (value) async {
-                                        cubit.changeSwitch(value, index);
+                                        cubit.changeSwitch(
+                                            value, index, context);
                                         Preferences.instance
                                             .getNotiVibrate()
                                             .then((value) {

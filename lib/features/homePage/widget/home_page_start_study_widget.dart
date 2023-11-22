@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:new_mazoon/features/lessons_of_class/screens/lesson_class.dart';
-
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/toast_message_method.dart';
 import '../../../../core/widgets/container_with_two_color_widget.dart';

@@ -22,7 +22,6 @@ class _LiveDropDownListState extends State<LiveDropDownList> {
     super.initState();
 
     context.read<StartTripCubit>().getExamClassesData();
-    
   }
 
   UniqueKey keyTile = UniqueKey();
@@ -41,7 +40,7 @@ class _LiveDropDownListState extends State<LiveDropDownList> {
     });
   }
 
-  String title = 'choose_class'.tr();
+  String title = 'select_month'.tr();
 
   @override
   Widget build(BuildContext context) {
