@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../config/routes/app_routes.dart';
+import '../../../../core/preferences/preferences.dart';
 import '../../../../core/utils/getsize.dart';
 import '../cubit/splash_cubit.dart';
 
@@ -61,7 +62,27 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
     // context.read<SplashCubit>().getAdsOfApp();
+
     _startDelay();
+    _getNotiStatus();
+  }
+
+  _getNotiStatus() async {
+    await Preferences.instance.getNotiLights().then((value) {
+      Preferences.instance.notiLight = value!;
+    });
+    await Preferences.instance.getNotiSound().then((value) {
+      Preferences.instance.notiSound = value!;
+    });
+    await Preferences.instance.getNotiVibrate().then((value) {
+      Preferences.instance.notiVisbrate = value!;
+    });
+
+    print('+++++++++++++++++++++++++++++++');
+    print(
+        '++sound = ${Preferences.instance.notiSound}+++++/n++ visbrate = ${Preferences.instance.notiVisbrate}++++++++++++++++++++');
+
+    print('+++++++++++++++++++++++++++++++');
   }
 
   @override

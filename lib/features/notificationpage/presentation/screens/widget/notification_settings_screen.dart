@@ -70,7 +70,8 @@ class NotificationSettingsScreen extends StatelessWidget {
                                                   .instance.notiVisbrate
                                               : Preferences.instance.notiLight,
                                       onChanged: (value) async {
-                                        cubit.changeSwitch(value, index);
+                                        cubit.changeSwitch(
+                                            value, index, context);
                                         Preferences.instance
                                             .getNotiVibrate()
                                             .then((value) {
@@ -89,6 +90,11 @@ class NotificationSettingsScreen extends StatelessWidget {
                                           Preferences.instance.notiLight =
                                               value ?? false;
                                         });
+
+                                        print(Preferences.instance.notiSound);
+                                        print(
+                                            Preferences.instance.notiVisbrate);
+                                        print(Preferences.instance.notiLight);
                                       },
                                       activeColor: Colors.white,
                                       activeTrackColor: Colors.orange,

@@ -22,6 +22,7 @@ class HomePageAppBarWidget extends StatelessWidget {
       this.isSource = false,
       this.isFavourite = false,
       this.isExam = false,
+      this.liveExam = false,
       this.isPayment = false,
       this.isNotification = false})
       : super(key: key);
@@ -31,6 +32,7 @@ class HomePageAppBarWidget extends StatelessWidget {
   final bool isNotification;
   final bool? isExam;
   final bool? isPayment;
+  final bool? liveExam;
   @override
   Widget build(BuildContext context) {
     String lang = EasyLocalization.of(context)!.locale.languageCode;
@@ -285,7 +287,16 @@ class HomePageAppBarWidget extends StatelessWidget {
                                                                 QuestionsLessonExamCubit>()
                                                             .isRecording = false
                                                       }
-                                                    : null;
+                                                    : liveExam!
+                                                        ? {
+                                                            Navigator
+                                                                .pushReplacementNamed(
+                                                              context,
+                                                              Routes
+                                                                  .homePageScreenRoute,
+                                                            )
+                                                          }
+                                                        : null;
                                       },
                                       child: Visibility(
                                         visible: !isHome!,

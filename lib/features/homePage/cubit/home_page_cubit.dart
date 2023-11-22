@@ -84,8 +84,8 @@ class HomePageCubit extends Cubit<HomePageState> {
     DateTime examDateTime =
         DateTime.parse(dateExam + ' ' + timeStart); // Combine date and time
     DateTime endDateTime = DateTime.parse(dateExam + ' ' + endTime);
-    int minutesDifference = examDateTime.difference(now).inMinutes + 1;
-    int minutesDifferenceEnd = endDateTime.difference(now).inMinutes + 1;
+    int minutesDifference = examDateTime.difference(now).inMinutes;
+    int minutesDifferenceEnd = endDateTime.difference(now).inMinutes;
     quizMinutes = minutesDifferenceEnd <= 0
         ? 0
         : minutesDifferenceEnd; // Check if the exam is before now with a 15-minute buffer
@@ -93,13 +93,12 @@ class HomePageCubit extends Cubit<HomePageState> {
       print('case 1');
       if (minutesDifference <= 0) {
         print('case 11 $lifeExam');
-        lifeExam != null
-            ? Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        LiveExamQuestions(examId: lifeExam.toString())))
-            : null;
+        Navigator.pop(context);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    LiveExamQuestions(examId: liveModel!.id.toString())));
       } else {
         print('case 12');
         showDialog(
@@ -146,13 +145,11 @@ class HomePageCubit extends Cubit<HomePageState> {
                           // text: 'mm:ss',
                           onComplete: () {
                             Navigator.pop(context);
-                            lifeExam != null
-                                ? Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => LiveExamQuestions(
-                                            examId: lifeExam.toString())))
-                                : null;
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LiveExamQuestions(
+                                        examId: liveModel!.id.toString())));
                           },
                           timeFormatter: (seconds) {
                             int minutes = (seconds / 60).floor();
@@ -176,13 +173,13 @@ class HomePageCubit extends Cubit<HomePageState> {
           },
         );
         if (minutesDifference < 0) {
-          lifeExam != null
-              ? Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          LiveExamQuestions(examId: lifeExam.toString())))
-              : null;
+          Navigator.pop(context);
+
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      LiveExamQuestions(examId: liveModel!.id.toString())));
         }
       }
     } else if (now.isAtSameMomentAs(examDateTime) &&
@@ -206,13 +203,13 @@ class HomePageCubit extends Cubit<HomePageState> {
         },
       );
       if (minutesDifference < 0) {
-        lifeExam != null
-            ? Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        LiveExamQuestions(examId: lifeExam.toString())))
-            : null;
+        Navigator.pop(context);
+
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    LiveExamQuestions(examId: liveModel!.id.toString())));
       }
     } else {
       print('case 3');
@@ -293,7 +290,7 @@ class HomePageCubit extends Cubit<HomePageState> {
     emit(HomePageApplyLiveLoadingClass());
     await setDetailsList();
     final response =
-        await api.applyLiveExam(id: lifeExam.toString(), details: details);
+        await api.applyLiveExam(id: liveModel!.id.toString(), details: details);
     response.fold((l) {
       emit(HomePageApplyLiveErrorClass());
     }, (r) {
@@ -302,7 +299,7 @@ class HomePageCubit extends Cubit<HomePageState> {
             context,
             MaterialPageRoute(
                 builder: (context) =>
-                    LiveExamResultScreen(id: lifeExam.toString())));
+                    LiveExamResultScreen(id: liveModel!.id.toString())));
       } else if (r.code == 201) {
         Navigator.pop(context);
         Navigator.pop(context);

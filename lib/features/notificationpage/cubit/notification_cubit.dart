@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:new_mazoon/core/utils/getsize.dart';
 import 'package:new_mazoon/core/utils/show_dialog.dart';
 import 'package:new_mazoon/core/widgets/network_image.dart';
@@ -9,6 +10,8 @@ import '../../../../core/models/notifications_model.dart';
 import '../../../../core/remote/service.dart';
 import '../../../config/routes/app_routes.dart';
 import '../../../core/preferences/preferences.dart';
+import '../../../core/utils/restart_app_class.dart';
+import '../../../main.dart';
 
 part 'notification_state.dart';
 
@@ -22,25 +25,44 @@ class NotificationCubit extends Cubit<NotificationState> {
   // UpdateNotification? updateNotification;
   // final List<bool> switches = List.generate(3, (index) => true);
 
-  changeSwitch(bool value, index) async {
+  changeSwitch(bool value, index, BuildContext context) async {
     emit(LoadingChangingSwitchCaseState());
     if (index == 0) {
-      await Preferences.instance.setNotiSound(status: value).then((value) {
+      Preferences.instance.setNotiSound(status: value).then((value) {
         Preferences.instance.getNotiSound().then((value) {
-          Preferences.instance.notiSound = value ?? false;
+          Preferences.instance.notiSound = value!;
         });
       });
     } else if (index == 1) {
-      await Preferences.instance.setNotiVibrate(status: value);
-      Preferences.instance.getNotiVibrate().then((value) {
-        Preferences.instance.notiVisbrate = value ?? false;
+      Preferences.instance.setNotiVibrate(status: value).then((value) {
+        Preferences.instance.getNotiVibrate().then((value) {
+          Preferences.instance.notiVisbrate = value!;
+        });
       });
     } else {
-      await Preferences.instance.setNotiLights(status: value);
-      Preferences.instance.getNotiLights().then((value) {
-        Preferences.instance.notiLight = value ?? false;
+      Preferences.instance.setNotiLights(status: value).then((value) {
+        Preferences.instance.getNotiLights().then((value) {
+          Preferences.instance.notiLight = value!;
+        });
       });
     }
+    channel = AndroidNotificationChannel('your_channel_id', 'Your Channel Name',
+        description: 'Your Channel Description',
+        importance: Importance.high,
+        enableVibration: Preferences.instance.notiVisbrate,
+        playSound: Preferences.instance.notiSound,
+        enableLights: Preferences.instance.notiLight);
+    await flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(channel);
+        
+    // print(channel.);
+    print(channel.enableLights);
+    print(channel.enableVibration);
+
+    ///
+    HotRestartController.performHotRestart(context);
     emit(ChangingSwitchCaseState());
   }
 

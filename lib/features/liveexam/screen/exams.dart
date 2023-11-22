@@ -56,6 +56,7 @@ class _LiveExamsState extends State<LiveExams> {
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           LiveExamResultScreen(
+                                              isFromLiveExam: true,
                                               id: cubit.liveExams[index].id
                                                   .toString())));
                             },

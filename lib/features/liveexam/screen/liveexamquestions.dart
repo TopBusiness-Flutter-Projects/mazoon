@@ -113,7 +113,7 @@ class _LiveExamQuestionsState extends State<LiveExamQuestions> {
         var cubit = context.read<HomePageCubit>();
         return WillPopScope(
           onWillPop: () async {
-            Navigator.pop(context);
+            // Navigator.pop(context);
             return Future<bool>.value(false);
           },
           child: Scaffold(

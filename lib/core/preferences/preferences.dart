@@ -34,8 +34,12 @@ class Preferences {
   }
 
   Future<bool?> getNotiSound() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    notiSound = prefs.getBool('notiSound') ?? true;
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      notiSound = prefs.getBool('notiSound') ?? true;
+    } catch (e) {
+      notiSound = true;
+    }
     return notiSound;
   }
 
@@ -45,8 +49,12 @@ class Preferences {
   }
 
   Future<bool?> getNotiVibrate() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    notiVisbrate = prefs.getBool('notiVibrate') ?? true;
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      notiVisbrate = prefs.getBool('notiVibrate') ?? true;
+    } catch (e) {
+      notiVisbrate = true;
+    }
     return notiVisbrate;
   }
 
@@ -56,8 +64,12 @@ class Preferences {
   }
 
   Future<bool?> getNotiLights() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    notiLight = prefs.getBool('notiLights') ?? true;
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      notiLight = prefs.getBool('notiLights') ?? true;
+    } catch (e) {
+      notiLight = true;
+    }
     return notiLight;
   }
   //////////////////////////////////

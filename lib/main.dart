@@ -44,9 +44,8 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  Preferences.instance.getNotiLights();
-  Preferences.instance.getNotiSound();
-  Preferences.instance.getNotiVibrate();
+  await getNotiStatus();
+  print('+++++++++++++++++++++++++++++++');
 
   ///Cloud messaging step 2
 
@@ -127,6 +126,7 @@ getToken() async {
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
+  await getNotiStatus();
   print("Handling a background message: ${message.messageId}");
   RemoteNotification? notification = message.notification;
   AndroidNotification? android = message.notification?.android;
@@ -136,12 +136,12 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
       notification.title,
       notification.body,
       NotificationDetails(
-        android: AndroidNotificationDetails(
-          channel.id,
-          channel.name,
-          channelDescription: channel.description,
-          icon: '@drawable/ic_launcher',
-        ),
+        android: AndroidNotificationDetails(channel.id, channel.name,
+            channelDescription: channel.description,
+            icon: '@drawable/ic_launcher',
+            playSound: Preferences.instance.notiSound,
+            enableLights: Preferences.instance.notiLight,
+            enableVibration: Preferences.instance.notiVisbrate),
       ),
     );
     navigatorKey.currentState?.pushNamed(Routes.homePageScreenRoute);
@@ -154,25 +154,41 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 final locator = GetIt.instance;
 
-late AndroidNotificationChannel channel = AndroidNotificationChannel(
+AndroidNotificationChannel channel = AndroidNotificationChannel(
   Preferences.instance.notiSound
       ? Preferences.instance.notiVisbrate
-          ? "High Importance Notifications_elma474"
-          : Preferences.instance.notiLight
-              ? 'high_importance_channel_elmaz55'
-              : 'high_importance_channel_elmazo52'
-      : 'high_importance_channel_elma53', // id
+          ? Preferences.instance.notiLight
+              ? 'high notiVisbrate'
+              : 'high notiLight'
+          : 'high notiSound'
+      : "high notielse", // id
   Preferences.instance.notiSound
       ? Preferences.instance.notiVisbrate
-          ? "high_importance_channel_elm3"
-          : Preferences.instance.notiLight
-              ? 'high_importance_channel_elmn5'
-              : 'high_importance_channel_eazon2'
-      : 'high_importance_channel_elmazo', // title
+          ? Preferences.instance.notiLight
+              ? 'high_notiVisbrateTitle'
+              : 'high_notiLightTitle'
+          : 'high_notiSoundTitle'
+      : "high_importance_channel_elm3", // title
   description: "this notification elmazon1",
   importance: Importance.high,
   enableVibration: Preferences.instance.notiVisbrate,
   playSound: Preferences.instance.notiSound,
-
   enableLights: Preferences.instance.notiLight,
 );
+getNotiStatus() async {
+  await Preferences.instance.getNotiLights().then((value) {
+    Preferences.instance.notiLight = value!;
+  });
+  await Preferences.instance.getNotiSound().then((value) {
+    Preferences.instance.notiSound = value!;
+  });
+  await Preferences.instance.getNotiVibrate().then((value) {
+    Preferences.instance.notiVisbrate = value!;
+  });
+
+  print('+++++++++++++++++++++++++++++++');
+  print(
+      '++sound = ${Preferences.instance.notiSound}+++++/n++ visbrate = ${Preferences.instance.notiVisbrate}++++++++++++++++++++');
+
+  print('+++++++++++++++++++++++++++++++');
+}

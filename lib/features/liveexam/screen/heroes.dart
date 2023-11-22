@@ -20,7 +20,9 @@ class _LiveHeroesState extends State<LiveHeroes> {
   @override
   void initState() {
     context.read<LiveExamCubit>().getLiveHeroes(
-        examId: context.read<LiveExamCubit>().examsMonthes[0].id.toString());
+        examId: context.read<LiveExamCubit>().examsMonthes.isEmpty
+            ? "0"
+            : context.read<LiveExamCubit>().examsMonthes[0].id.toString());
     ;
 
     super.initState();
