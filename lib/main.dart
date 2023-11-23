@@ -24,7 +24,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'firebase_options.dart';
 import 'package:showcaseview/showcaseview.dart';
 
-
 ///Cloud messaging step 1
 FirebaseMessaging messaging = FirebaseMessaging.instance;
 
