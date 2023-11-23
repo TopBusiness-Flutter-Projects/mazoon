@@ -14,7 +14,6 @@ class AppStrings {
   static const String arabicCode = 'ar';
   static const String locale = 'locale';
   static const String phoneCode = '+20';
-
   static const String verificationTitle = 'verification_title_text';
   static const String verificationDesc = 'verification_desc_text';
   static const String verificationValidatorMessage =
@@ -56,6 +55,5 @@ class AppStrings {
   static const String balanceText = 'balance_text';
   static const String SARText = 'SAR';
   static const String noEmailError = 'There_is_no_email_with_this_phone';
-
   static const String mode = 'mode';
 }

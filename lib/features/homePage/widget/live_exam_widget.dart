@@ -5,7 +5,6 @@ import 'package:new_mazoon/core/utils/app_colors.dart';
 import 'package:new_mazoon/core/utils/assets_manager.dart';
 import 'package:new_mazoon/core/utils/getsize.dart';
 import 'package:new_mazoon/features/homePage/cubit/home_page_cubit.dart';
-
 import '../../../core/preferences/preferences.dart';
 
 class LiveExamWarningWidget extends StatelessWidget {
