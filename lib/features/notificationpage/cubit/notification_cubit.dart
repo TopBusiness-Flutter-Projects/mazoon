@@ -56,7 +56,7 @@ class NotificationCubit extends Cubit<NotificationState> {
         .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(channel);
-        
+
     // print(channel.);
     print(channel.enableLights);
     print(channel.enableVibration);

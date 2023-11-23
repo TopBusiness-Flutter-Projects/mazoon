@@ -144,9 +144,9 @@ class MenuScreenWidget extends StatelessWidget {
                               title: 'language'.tr(),
                               iconPath: ImageAssets.languageIcon,
                               onclick: () {
-                                errorGetBar('working_on_it'.tr());
-                                // Navigator.pushNamed(
-                                //     context, Routes.changeLanguageScreen);
+                                // errorGetBar('working_on_it'.tr());
+                                Navigator.pushNamed(
+                                    context, Routes.changeLanguageScreen);
                               },
                             ),
                             MenuListTileWidget(
