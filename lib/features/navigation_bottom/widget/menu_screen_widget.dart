@@ -81,7 +81,10 @@ class MenuScreenWidget extends StatelessWidget {
                                                 ? Alignment.topRight
                                                 : Alignment.topLeft,
                                             padding: EdgeInsets.only(
-                                                left: getSize(context) / 5),
+                                              left: lang == 'ar'
+                                                  ? getSize(context) / 5
+                                                  : 0,
+                                            ),
                                             child: Text(
                                               cubit.userModel!.data!.name,
                                               maxLines: 1,
@@ -399,7 +402,9 @@ class MenuScreenWidget extends StatelessWidget {
                           ),
                           child: Center(
                             child: Icon(
-                              Icons.arrow_back,
+                              lang == 'ar'
+                                  ? Icons.arrow_back
+                                  : Icons.arrow_forward,
                               color: AppColors.white,
                             ),
                           ),

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/preferences/preferences.dart';
+import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/getsize.dart';
 import '../cubit/splash_cubit.dart';
 
@@ -101,6 +102,19 @@ class _SplashScreenState extends State<SplashScreen>
     //       _startDelay();
     //     }
     return Scaffold(
+      bottomSheet: Container(
+          alignment: Alignment.bottomCenter,
+          width: double.infinity,
+          height: getSize(context) / 3,
+          color: AppColors.white,
+          child: Center(
+            child: Image.asset(
+              'assets/images/011.png',
+              fit: BoxFit.contain, alignment: Alignment.bottomCenter,
+              // height: getSize(context) / 4,
+              width: getSize(context) / 2.5,
+            ),
+          )),
       body: Stack(
         alignment: Alignment.center,
         children: [
