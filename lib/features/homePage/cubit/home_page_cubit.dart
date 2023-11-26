@@ -84,8 +84,8 @@ class HomePageCubit extends Cubit<HomePageState> {
     DateTime examDateTime =
         DateTime.parse(dateExam + ' ' + timeStart); // Combine date and time
     DateTime endDateTime = DateTime.parse(dateExam + ' ' + endTime);
-    int minutesDifference = examDateTime.difference(now).inMinutes;
-    int minutesDifferenceEnd = endDateTime.difference(now).inMinutes;
+    int minutesDifference = examDateTime.difference(now).inMinutes+1;
+    int minutesDifferenceEnd = endDateTime.difference(now).inMinutes+1;
     quizMinutes = minutesDifferenceEnd <= 0
         ? 0
         : minutesDifferenceEnd; // Check if the exam is before now with a 15-minute buffer
@@ -162,7 +162,7 @@ class HomePageCubit extends Cubit<HomePageState> {
                           timeTextStyle: TextStyle(
                             color: AppColors.primary,
                             fontSize: getSize(context) / 22,
-                            fontFamily: 'KeaniaOne',
+                            fontFamily: 'Cairo',
                             fontWeight: FontWeight.w400,
                           ),
                         ),
@@ -174,7 +174,6 @@ class HomePageCubit extends Cubit<HomePageState> {
         );
         if (minutesDifference < 0) {
           Navigator.pop(context);
-
           Navigator.push(
               context,
               MaterialPageRoute(
@@ -185,7 +184,6 @@ class HomePageCubit extends Cubit<HomePageState> {
     } else if (now.isAtSameMomentAs(examDateTime) &&
         now.isBefore(DateTime.parse(dateExam + ' ' + endTime))) {
       print('case 2');
-
       showDialog(
         context: context,
         barrierDismissible: isDialogVisible,
@@ -202,9 +200,8 @@ class HomePageCubit extends Cubit<HomePageState> {
           );
         },
       );
-      if (minutesDifference < 0) {
+      if (minutesDifference <= 0) {
         Navigator.pop(context);
-
         Navigator.push(
             context,
             MaterialPageRoute(
