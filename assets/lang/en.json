@@ -15,7 +15,9 @@
   "grades_performance": "Grades and performance appraisals",
   "exam_hero": "Examination heroes",
   "first_exams": "The first partial and comprehensive exams",
-  "month_plan": "monthly plan",
+  "month_plan": "monthly plan","no_replies":"no replies",
+  "add_replay": "add reply",
+
   "notifications": "Notifications",
   "notification_settings": "Notification Settings",
   "sound": " The Sound",
