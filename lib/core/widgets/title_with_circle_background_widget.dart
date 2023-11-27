@@ -4,11 +4,12 @@ import 'package:new_mazoon/core/utils/getsize.dart';
 import '../utils/app_colors.dart';
 
 class TitleWithCircleBackgroundWidget extends StatefulWidget {
-  TitleWithCircleBackgroundWidget({Key? key, required this.title, this.width})
+  TitleWithCircleBackgroundWidget(
+      {Key? key, this.height, required this.title, this.width})
       : super(key: key);
   double? width;
   final String title;
-
+  double? height;
   @override
   State<TitleWithCircleBackgroundWidget> createState() =>
       _TitleWithCircleBackgroundWidgetState();
@@ -24,7 +25,7 @@ class _TitleWithCircleBackgroundWidgetState
               ? TextDirection.rtl
               : TextDirection.ltr,
       child: SizedBox(
-        height: getSize(context) / 12,
+        height: widget.height ?? getSize(context) / 12,
         width: widget.width ?? MediaQuery.of(context).size.width / 2,
         child: Stack(
           children: [
@@ -95,6 +96,8 @@ class _TitleWithCircleBackgroundWidgetState
                     children: [
                       Text(
                         widget.title.tr(),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontSize: getSize(context) / 22,
                           fontWeight: FontWeight.bold,

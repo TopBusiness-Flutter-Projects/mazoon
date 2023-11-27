@@ -35,6 +35,8 @@ class HomePageCubit extends Cubit<HomePageState> {
   List<AllClasses> classes = [];
   List<SliderModel> sliders = [];
   LiveModelClass? liveModel;
+  String lnagStatus = "active";
+  String centerStatus = 'out';
   List<HomePageVideosModel> videosBasics = [];
   List<FinalReviewModel> videosResources = [];
   dynamic lifeExam;
@@ -53,8 +55,10 @@ class HomePageCubit extends Cubit<HomePageState> {
         videosBasics = res.data!.videosBasics!;
         videosResources = res.data!.videosResources!;
         lifeExam = res.data!.lifeExam;
+        centerStatus = res.data!.centerStatus;
         liveModel = res.data!.liveModel;
         notiCount = res.data!.notificationCount;
+        lnagStatus = res.data!.lnagStatus;
         if (res.data!.liveModel != null) {
           Timer(Duration(seconds: 2), () {
             checkDateTime(
@@ -84,8 +88,8 @@ class HomePageCubit extends Cubit<HomePageState> {
     DateTime examDateTime =
         DateTime.parse(dateExam + ' ' + timeStart); // Combine date and time
     DateTime endDateTime = DateTime.parse(dateExam + ' ' + endTime);
-    int minutesDifference = examDateTime.difference(now).inMinutes+1;
-    int minutesDifferenceEnd = endDateTime.difference(now).inMinutes+1;
+    int minutesDifference = examDateTime.difference(now).inMinutes + 1;
+    int minutesDifferenceEnd = endDateTime.difference(now).inMinutes + 1;
     quizMinutes = minutesDifferenceEnd <= 0
         ? 0
         : minutesDifferenceEnd; // Check if the exam is before now with a 15-minute buffer
@@ -295,8 +299,10 @@ class HomePageCubit extends Cubit<HomePageState> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) =>
-                    LiveExamResultScreen(id: liveModel!.id.toString())));
+              builder: (context) => LiveExamResultScreen(
+                id: liveModel!.id.toString(),
+              ),
+            ));
       } else if (r.code == 201) {
         Navigator.pop(context);
         Navigator.pop(context);

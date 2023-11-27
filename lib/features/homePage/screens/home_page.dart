@@ -14,6 +14,7 @@ import '../widget/final_review_widget.dart';
 import '../widget/home_page_start_study_widget.dart';
 import '../widget/home_page_video_item_widget.dart';
 import '../widget/live_exam_widget.dart';
+import 'package:new_version/new_version.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,7 +24,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool isLoading = true;
   @override
   void initState() {
     getToken().then((e) {
@@ -32,8 +32,38 @@ class _HomePageState extends State<HomePage> {
     context.read<HomePageCubit>().getUserData().then((value) =>
         context.read<HomePageCubit>().getHomePageData(context: context));
     super.initState();
+    final newVersion = NewVersion(
+      iOSId: 'com.topbusiness.newMazoon',
+      androidId: 'com.topbusiness.new_mazoon',
+    );
+  const simpleBehavior = true;
+    if (simpleBehavior) {
+      basicStatusCheck(newVersion);
+    }
   }
 
+  basicStatusCheck(NewVersion newVersion) {
+    newVersion.showAlertIfNecessary(context: context);
+  }
+
+  advancedStatusCheck(NewVersion newVersion) async {
+    final status = await newVersion.getVersionStatus();
+    if (status != null) {
+      debugPrint(status.releaseNotes);
+      debugPrint(status.appStoreLink);
+      debugPrint(status.localVersion);
+      debugPrint(status.storeVersion);
+      debugPrint(status.canUpdate.toString());
+      newVersion.showUpdateDialog(
+        context: context,
+        versionStatus: status,
+        dialogTitle: 'New update',
+        dialogText: 'there are new update',
+      );
+    }
+  }
+
+  bool isLoading = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

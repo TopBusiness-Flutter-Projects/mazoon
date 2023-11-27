@@ -7,6 +7,7 @@ import 'package:new_mazoon/features/login/cubit/login_cubit.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/assets_manager.dart';
 import '../../../core/widgets/my_svg_widget.dart';
+import '../../homePage/cubit/home_page_cubit.dart';
 import '../../homePage/screens/home_page.dart';
 import '../../homePage/widget/home_page_app_bar_widget.dart';
 import '../../notes/screen/noteplan.dart';
@@ -68,6 +69,7 @@ class _NavigatorBarState extends State<NavigatorBar> {
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   @override
   void initState() {
+    context.read<HomePageCubit>().getUserData();
     context.read<LoginCubit>().getCommunicationData();
     super.initState();
   }
