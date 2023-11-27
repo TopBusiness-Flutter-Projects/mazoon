@@ -71,7 +71,6 @@ class _VideoDetailsState extends State<VideoDetails> {
     return BlocBuilder<LessonsClassCubit, LessonsClassState>(
         builder: (context, state) {
       LessonsClassCubit cubit2 = context.read<LessonsClassCubit>();
-
       return BlocBuilder<HomePageCubit, HomePageState>(
         builder: (context, state) {
           var controller = context.read<HomePageCubit>();
@@ -117,30 +116,42 @@ class _VideoDetailsState extends State<VideoDetails> {
                             Orientation.landscape
                         ? null
                         : AppBar(
-                            leading: InkWell(
-                                onTap: () {
-                                  if (widget.type == 'video_part') {
-                                    cubit.updateTime(context).then((value) {
-                                      Navigator.pop(context);
-                                      cubit2.videosofLessons = [];
-                                      cubit.stopRecord();
-                                      cubit2.getVideosofLessonsData(
-                                          cubit.lessonId);
-                                      cubit2.getLessonsClassData(
-                                          cubit2.oneClass!.id!,
-                                          cubit.lessonId,
-                                          context,
-                                          false,
-                                          false,
-                                          false);
-                                    });
-                                  } else {
-                                    Navigator.pop(context);
-                                    cubit2.videosofLessons = [];
-                                    cubit.stopRecord();
-                                  }
-                                },
-                                child: Icon(Icons.arrow_back_ios)),
+                            actions: [
+                                InkWell(
+                                    onTap: () {
+                                      if (widget.type == 'video_part') {
+                                        cubit.updateTime(context).then((value) {
+                                          Navigator.pop(context);
+                                          cubit2.videosofLessons = [];
+                                          cubit.stopRecord();
+                                          cubit2.getVideosofLessonsData(
+                                              cubit.lessonId);
+                                          cubit2.getLessonsClassData(
+                                              cubit2.oneClass!.id!,
+                                              cubit.lessonId,
+                                              context,
+                                              false,
+                                              false,
+                                              false);
+                                        });
+                                      } else {
+                                        Navigator.pop(context);
+                                        cubit2.videosofLessons = [];
+                                        cubit.stopRecord();
+                                      }
+                                    },
+                                    child: Container(
+                                        margin: EdgeInsets.symmetric(
+                                            horizontal: getSize(context) / 44),
+                                        child: Icon(
+                                            trans.EasyLocalization.of(context)!
+                                                        .currentLocale!
+                                                        .languageCode ==
+                                                    'ar'
+                                                ? Icons.arrow_forward_ios
+                                                : Icons.arrow_forward_ios)))
+                              ],
+                            automaticallyImplyLeading: false,
                             backgroundColor: AppColors.primary,
                             title: Text(
                                 cubit.videoModel != null

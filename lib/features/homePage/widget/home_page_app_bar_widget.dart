@@ -301,7 +301,12 @@ class HomePageAppBarWidget extends StatelessWidget {
                                       child: Visibility(
                                         visible: !isHome!,
                                         child: Icon(
-                                          Icons.arrow_back_ios_new_sharp,
+                                          EasyLocalization.of(context)!
+                                                      .currentLocale!
+                                                      .languageCode ==
+                                                  'ar'
+                                              ? Icons.arrow_back_ios_new_sharp
+                                              : Icons.arrow_forward_ios,
                                           color: AppColors.white,
                                           size: getSize(context) / 18,
                                         ),

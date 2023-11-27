@@ -29,12 +29,16 @@ class HomePageData {
       {this.lifeExam,
       this.sliders,
       this.videosBasics,
+      this.lnagStatus,
       this.classes,
       this.liveModel,
+      this.centerStatus,
       this.videosResources,
       this.notificationCount});
   final dynamic notificationCount;
+  final dynamic lnagStatus;
   final dynamic lifeExam;
+  final dynamic centerStatus;
   final List<SliderModel>? sliders;
   final List<HomePageVideosModel>? videosBasics;
   final List<AllClasses>? classes;
@@ -44,6 +48,8 @@ class HomePageData {
 
   factory HomePageData.fromJson(Map<String, dynamic> json) => HomePageData(
         lifeExam: json["life_exam"],
+        centerStatus: json['center_status'],
+        lnagStatus: json['language_active'],
         notificationCount: json['notification_count'],
         liveModel: json["live_model"] == null
             ? null
@@ -68,7 +74,9 @@ class HomePageData {
 
   Map<String, dynamic> toJson() => {
         "life_exam": lifeExam,
+        "center_status": centerStatus,
         "notification_count": notificationCount,
+        "lnagStatus": lnagStatus,
         "live_model": liveModel!.toJson(),
         "sliders": sliders == null
             ? []

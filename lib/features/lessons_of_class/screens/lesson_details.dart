@@ -1,4 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart' as tras;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_mazoon/core/utils/app_colors.dart';
@@ -65,6 +65,7 @@ class _LessonDetailsState extends State<LessonDetails>
                     SizedBox(height: getSize(context) / 3),
                     TitleWithCircleBackgroundWidget(
                         width: double.infinity,
+                        height: getSize(context) / 6,
                         /////////////
                         title: '${widget.model.title} : ${widget.model.name}'),
                     SingleChildScrollView(

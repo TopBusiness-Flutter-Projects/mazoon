@@ -19,7 +19,7 @@ class HomePageStartStudyWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TitleWithCircleBackgroundWidget(title: 'start_study'),
+        TitleWithCircleBackgroundWidget(title: 'start_study'.tr()),
         SizedBox(height: 20),
         Padding(
           padding: const EdgeInsets.all(4.0),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_mazoon/core/utils/assets_manager.dart';
 import 'package:new_mazoon/core/utils/getsize.dart';
+import 'package:new_mazoon/features/homePage/cubit/home_page_cubit.dart';
 import 'package:new_mazoon/features/login/cubit/login_cubit.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -143,15 +144,18 @@ class MenuScreenWidget extends StatelessWidget {
                       Expanded(
                         child: ListView(
                           children: [
-                            MenuListTileWidget(
-                              title: 'language'.tr(),
-                              iconPath: ImageAssets.languageIcon,
-                              onclick: () {
-                                // errorGetBar('working_on_it'.tr());
-                                Navigator.pushNamed(
-                                    context, Routes.changeLanguageScreen);
-                              },
-                            ),
+                            context.read<HomePageCubit>().lnagStatus ==
+                                    'not_active'
+                                ? Container()
+                                : MenuListTileWidget(
+                                    title: 'language'.tr(),
+                                    iconPath: ImageAssets.languageIcon,
+                                    onclick: () {
+                                      // errorGetBar('working_on_it'.tr());
+                                      Navigator.pushNamed(
+                                          context, Routes.changeLanguageScreen);
+                                    },
+                                  ),
                             MenuListTileWidget(
                               title: 'profile'.tr(),
                               iconPath: ImageAssets.profileIcon,
@@ -160,15 +164,17 @@ class MenuScreenWidget extends StatelessWidget {
                                     context, Routes.profileScreen);
                               },
                             ),
-                            MenuListTileWidget(
-                              title: 'register_paper_exam'.tr(),
-                              iconPath: ImageAssets.userEditIcon,
-                              onclick: () {
-                                context
-                                    .read<NavigationCubit>()
-                                    .getTimes(context);
-                              },
-                            ),
+                            (context.read<HomePageCubit>().centerStatus != 'in')
+                                ? Container()
+                                : MenuListTileWidget(
+                                    title: 'register_paper_exam'.tr(),
+                                    iconPath: ImageAssets.userEditIcon,
+                                    onclick: () {
+                                      context
+                                          .read<NavigationCubit>()
+                                          .getTimes(context);
+                                    },
+                                  ),
                             MenuListTileWidget(
                               title: 'mygards_rate'.tr(),
                               iconPath: ImageAssets.degreeIcon,

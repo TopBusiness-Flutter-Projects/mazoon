@@ -1,5 +1,4 @@
 import 'dart:io';
-// import 'dart:js';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -14,7 +13,6 @@ import 'package:get_it/get_it.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 // import 'package:screenshot_callback/screenshot_callback.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
-import 'package:upgrader/upgrader.dart';
 import 'dart:async';
 import 'app.dart';
 import 'app_bloc_observer.dart';
@@ -105,8 +103,7 @@ Future<void> main() async {
           saveLocale: true,
           startLocale: Locale('ar', ''),
           fallbackLocale: Locale('ar', ''),
-          child: UpgradeAlert(
-              child: HotRestartController(child: const Elmazoon())),
+          child: HotRestartController(child: const Elmazoon()),
         );
       }),
     ),
