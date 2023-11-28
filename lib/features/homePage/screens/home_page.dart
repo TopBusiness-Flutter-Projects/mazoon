@@ -31,34 +31,24 @@ class _HomePageState extends State<HomePage> {
     });
     context.read<HomePageCubit>().getUserData().then((value) =>
         context.read<HomePageCubit>().getHomePageData(context: context));
+    _checkVersion();
     super.initState();
+  }
+
+  void _checkVersion() async {
     final newVersion = NewVersion(
+      androidId: "com.topbusiness.new_mazoon",
       iOSId: 'com.topbusiness.newMazoon',
-      androidId: 'com.topbusiness.new_mazoon',
     );
-  const simpleBehavior = true;
-    if (simpleBehavior) {
-      basicStatusCheck(newVersion);
-    }
-  }
-
-  basicStatusCheck(NewVersion newVersion) {
-    newVersion.showAlertIfNecessary(context: context);
-  }
-
-  advancedStatusCheck(NewVersion newVersion) async {
     final status = await newVersion.getVersionStatus();
-    if (status != null) {
-      debugPrint(status.releaseNotes);
-      debugPrint(status.appStoreLink);
-      debugPrint(status.localVersion);
-      debugPrint(status.storeVersion);
-      debugPrint(status.canUpdate.toString());
+    if (status?.canUpdate == true) {
       newVersion.showUpdateDialog(
         context: context,
-        versionStatus: status,
-        dialogTitle: 'New update',
-        dialogText: 'there are new update',
+        versionStatus: status!,
+        allowDismissal: false,
+        dialogTitle: "UPDATE",
+        dialogText:
+            "Please update the app from ${status.localVersion} to ${status.storeVersion}",
       );
     }
   }
