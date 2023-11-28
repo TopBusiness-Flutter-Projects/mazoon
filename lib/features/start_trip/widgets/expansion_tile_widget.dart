@@ -158,8 +158,8 @@ class _ExpansionTileWidgetState extends State<ExpansionTileWidget> {
                                           ),
                                           child: Center(
                                             child: Text(
-                                              cubit.examClasses[index]
-                                                  .numOfLessons
+                                              cubit
+                                                  .examClasses[index].numOfExams
                                                   .toString(),
                                               style: TextStyle(
                                                 color: title ==

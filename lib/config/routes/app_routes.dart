@@ -235,7 +235,6 @@ class AppRoutes {
       case Routes.resultOfLessonExam:
         ResponseOfApplyLessonExmamData model =
             settings.arguments as ResponseOfApplyLessonExmamData;
-
         return PageTransition(
           child: ResultExamLessonScreen(model: model),
           type: PageTransitionType.fade,

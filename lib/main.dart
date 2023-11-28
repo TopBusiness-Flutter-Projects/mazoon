@@ -11,6 +11,7 @@ import 'package:new_mazoon/injector.dart' as injector;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
+import 'package:upgrader/upgrader.dart';
 // import 'package:screenshot_callback/screenshot_callback.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
@@ -103,7 +104,8 @@ Future<void> main() async {
           saveLocale: true,
           startLocale: Locale('ar', ''),
           fallbackLocale: Locale('ar', ''),
-          child: HotRestartController(child: const Elmazoon()),
+          child: UpgradeAlert(
+              child: HotRestartController(child: const Elmazoon())),
         );
       }),
     ),
