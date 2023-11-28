@@ -21,7 +21,7 @@ dependencies:
   flutter_cache_manager: ^3.3.1
   flutter_calendar_carousel: ^2.4.1
   flutter_share: ^2.0.0
-  package_info_plus: 
+  package_info_plus: ^3.0.2
   dio: ^4.0.6
   flutter_svg: ^2.0.4
   page_transition: "^2.0.9"
@@ -100,9 +100,10 @@ dependencies:
   youtube_player_flutter: ^8.1.2
   showcaseview: ^2.0.3
   screenshot_callback: ^3.0.1
-  new_version: 
+  # new_version: ^0.3.1
   countdown_progress_indicator: ^0.1.2
-  device_info_plus: 
+  device_info_plus:
+  upgrader:
 dev_dependencies:
   flutter_test:
     sdk: flutter

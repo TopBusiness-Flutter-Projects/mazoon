@@ -55,7 +55,9 @@ class _LiveExamResultScreenState extends State<LiveExamResultScreen> {
           onWillPop: () async {
             if (widget.isFromLiveExam) {
               Navigator.pushReplacementNamed(
-                  context, Routes.homePageScreenRoute);
+                context,
+                Routes.homePageScreenRoute,
+              );
             } else {
               Navigator.pop(context);
             }

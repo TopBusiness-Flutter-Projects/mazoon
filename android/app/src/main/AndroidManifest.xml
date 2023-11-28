@@ -27,7 +27,6 @@
         </intent>
     </queries>
 
-
     <application
         android:usesCleartextTraffic="true"
         android:label="@string/appname"

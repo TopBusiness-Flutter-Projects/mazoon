@@ -115,12 +115,13 @@ class HomePageCubit extends Cubit<HomePageState> {
                   return false;
                 },
                 child: AlertDialog(
+                  backgroundColor: Color(0xFFDADEF8),
                   shape: RoundedRectangleBorder(
                       borderRadius:
                           BorderRadius.circular(getSize(context) / 22)),
                   shadowColor: Colors.black.withOpacity(0.4),
                   title: Text(
-                    'بعد انتهاء العد تلقائيا سيبدأ امتحان  اللايف اجهز يا بطل ',
+                    'بعد انتهاء العد تلقائيا سيبدأ امتحان  اللايف اجهز يا بطل 💪',
                     maxLines: 2,
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -165,8 +166,8 @@ class HomePageCubit extends Cubit<HomePageState> {
                           },
                           timeTextStyle: TextStyle(
                             color: AppColors.primary,
-                            fontSize: getSize(context) / 22,
-                            fontFamily: 'Cairo',
+                            fontSize: getSize(context) / 14,
+                            fontFamily: 'KeaniaOne',
                             fontWeight: FontWeight.w400,
                           ),
                         ),
@@ -198,6 +199,7 @@ class HomePageCubit extends Cubit<HomePageState> {
               return false;
             },
             child: AlertDialog(
+              backgroundColor: Color(0xFFDADEF8),
               title: Text('Go!'),
               content: Text('It is time to go.'),
             ),
@@ -301,6 +303,7 @@ class HomePageCubit extends Cubit<HomePageState> {
             MaterialPageRoute(
               builder: (context) => LiveExamResultScreen(
                 id: liveModel!.id.toString(),
+                isFromLiveExam: true,
               ),
             ));
       } else if (r.code == 201) {
