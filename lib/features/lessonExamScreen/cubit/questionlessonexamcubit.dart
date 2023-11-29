@@ -35,13 +35,13 @@ class QuestionsLessonExamCubit extends Cubit<QuestionsOfLessonExamState> {
               context,
               Routes.lessonExamScreen);
           emit(LoadedLessonExam());
-        }
-        //  else if (r.code == 201) {
-        //   toastMessage(r.message, context);
-        //   Navigator.pop(context);
-        //   ///go to result of exam or exit him from Questions screen
-        // }
-        else {
+        } else if (r.code == 201) {
+          toastMessage(r.message, context);
+          Navigator.pop(context);
+          // Navigator.pop(context);
+
+          ///go to result of exam or exit him from Questions screen
+        } else {
           toastMessage(r.message, context);
         }
         emit(LoadedLessonExam());
