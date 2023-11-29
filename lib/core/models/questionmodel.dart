@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MainQuestionModel {
-  QuestionDateModel data;
+  QuestionDateModel? data;
   String message;
   int code;
 
@@ -13,13 +13,15 @@ class MainQuestionModel {
 
   factory MainQuestionModel.fromJson(Map<String, dynamic> json) =>
       MainQuestionModel(
-        data: QuestionDateModel.fromJson(json["data"] ?? ''),
+        data: json["data"] == null
+            ? null
+            : QuestionDateModel.fromJson(json["data"]),
         message: json["message"],
         code: json["code"],
       );
 
   Map<String, dynamic> toJson() => {
-        "data": data.toJson(),
+        "data": data!.toJson(),
         "message": message,
         "code": code,
       };
