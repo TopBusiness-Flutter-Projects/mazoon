@@ -20,6 +20,11 @@ class ClassesScreen extends StatefulWidget {
 
 class _ClassesScreenState extends State<ClassesScreen> {
   int isLoading = 0;
+  @override
+  void initState() {
+    context.read<StartTripCubit>().getExplanationData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
