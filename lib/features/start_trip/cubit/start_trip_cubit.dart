@@ -16,7 +16,7 @@ part 'start_trip_state.dart';
 class StartTripCubit extends Cubit<StartTripState> {
   StartTripCubit(this.api) : super(StartTripInitial()) {
     getDirectionPath();
-    getExplanationData();
+    // getExplanationData();
     getFinalReviewData();
     getExamClassesData();
   }
