@@ -6,7 +6,6 @@ import 'package:new_mazoon/core/utils/assets_manager.dart';
 import 'package:new_mazoon/core/utils/getsize.dart';
 import 'package:new_mazoon/core/widgets/my_svg_widget.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-
 import '../../../core/utils/string_to_double.dart';
 import '../cubit/attachmentcubit.dart';
 import '../cubit/attachmentstate.dart';

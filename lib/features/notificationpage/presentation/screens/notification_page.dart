@@ -96,8 +96,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                     ////navigate
                                                     //   if(cubit.data![index].type=='text'){
                                                     //     ///show pop
-                                                    //   }else if(){
-
+                                                    //   }else if(){}
                                                     /////
                                                   },
                                                   child:

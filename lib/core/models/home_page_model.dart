@@ -241,29 +241,31 @@ class FinalReviewModel {
   final String? type;
   final String? backgroundColor;
   final String? image;
-  final String? time;
-  final String? pathFile;
+  final dynamic time;
+  final dynamic pathFile;
   final dynamic size;
   final DateTime? createdAt;
+  final int? isYoutube;
   final DateTime? updatedAt;
   double progress = 0;
-  FinalReviewModel({
-    this.id,
-    this.name,
-    this.type,
-    this.backgroundColor,
-    this.image,
-    this.time,
-    this.pathFile,
-    this.size,
-    this.createdAt,
-    this.updatedAt,
-  });
+  FinalReviewModel(
+      {this.id,
+      this.name,
+      this.type,
+      this.backgroundColor,
+      this.image,
+      this.time,
+      this.pathFile,
+      this.size,
+      this.createdAt,
+      this.updatedAt,
+      this.isYoutube});
 
   factory FinalReviewModel.fromJson(Map<String, dynamic> json) =>
       FinalReviewModel(
         id: json["id"],
         name: json["name"],
+        isYoutube: json['is_youtube'],
         type: json["type"],
         backgroundColor: json["background_color"],
         image: json["image"],
@@ -282,6 +284,7 @@ class FinalReviewModel {
         "id": id,
         "name": name,
         "type": type,
+        "is_youtube": isYoutube,
         "background_color": backgroundColor,
         "image": image,
         "time": time,
