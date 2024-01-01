@@ -9,6 +9,7 @@ import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/assets_manager.dart';
 import '../../../core/utils/dialogs.dart';
 import '../../../core/utils/getsize.dart';
+import '../../../core/utils/pdfsize.dart';
 import '../../../core/widgets/my_svg_widget.dart';
 import '../../../core/widgets/pdf_screen.dart';
 
@@ -107,17 +108,50 @@ class _SummaryScreenState extends State<SummaryScreen> {
                                             padding: EdgeInsets.symmetric(
                                                 horizontal:
                                                     getSize(context) / 44),
-                                            child: Text(
-                                              cubit.pdfLessonData[index].size
-                                                      .toString() +
-                                                  ' MB',
-                                              style: TextStyle(
-                                                color: darken(
-                                                    HexColor(cubit
-                                                        .pdfLessonData[index]
-                                                        .backgroundColor),
-                                                    0.4),
-                                              ),
+                                            // child: Text(
+                                            //   getPdfSize(cubit
+                                            //               .pdfLessonData[index]
+                                            //               .link)
+                                            //           .toStringAsFixed(2) +
+                                            //       ' MB',
+                                            // style: TextStyle(
+                                            //   color: darken(
+                                            //       HexColor(cubit
+                                            //           .pdfLessonData[index]
+                                            //           .backgroundColor),
+                                            //       0.4),
+                                            //   ),
+                                            // ),
+                                            child: FutureBuilder<double>(
+                                              future: getPdfSize(cubit
+                                                  .pdfLessonData[index].link),
+                                              builder: (context, snapshot) {
+                                                if (snapshot.connectionState ==
+                                                    ConnectionState.waiting) {
+                                                  return Text(
+                                                      ''); // Show a loading indicator while waiting
+                                                } else if (snapshot.hasError ||
+                                                    snapshot.data == -1) {
+                                                  return Text('-MB',
+                                                      style: TextStyle(
+                                                          color: darken(
+                                                              HexColor(cubit
+                                                                  .pdfLessonData[
+                                                                      index]
+                                                                  .backgroundColor),
+                                                              0.4)));
+                                                } else {
+                                                  return Text(
+                                                      '${snapshot.data!.toStringAsFixed(2)} MB',
+                                                      style: TextStyle(
+                                                          color: darken(
+                                                              HexColor(cubit
+                                                                  .pdfLessonData[
+                                                                      index]
+                                                                  .backgroundColor),
+                                                              0.4)));
+                                                }
+                                              },
                                             ),
                                           ),
                                         ],

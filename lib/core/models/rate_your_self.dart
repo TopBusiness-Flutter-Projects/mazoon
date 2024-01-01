@@ -93,7 +93,7 @@ class RateYourselfQuestionModel {
   dynamic answerUser;
   String answerUserType;
   String questionType;
-  String fileType;
+  String? fileType;
   int degree;
   String note;
   List<RateYourselfAnswersModel> answers;

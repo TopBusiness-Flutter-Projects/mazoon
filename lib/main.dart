@@ -174,6 +174,7 @@ AndroidNotificationChannel channel = AndroidNotificationChannel(
   playSound: Preferences.instance.notiSound,
   enableLights: Preferences.instance.notiLight,
 );
+
 getNotiStatus() async {
   await Preferences.instance.getNotiLights().then((value) {
     Preferences.instance.notiLight = value!;
