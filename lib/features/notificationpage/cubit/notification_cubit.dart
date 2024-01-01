@@ -91,13 +91,13 @@ class NotificationCubit extends Cubit<NotificationState> {
       emit(SuccessUpdateState());
       Navigator.pop(context);
       //couldn't check this case
-      if (data![index].videoType == "video_resource") {
+      if (data![index].notificationType == "video_resource") {
         Navigator.pushNamed(context, Routes.videoDetailsScreenRoute,
             arguments: {
               'type': 'video_resource',
               'videoId': data![index].videoId,
             });
-      } else if (data![index].videoType == "video_part") {
+      } else if (data![index].notificationType == "video_part") {
         Navigator.pushNamed(context, Routes.videoDetailsScreenRoute,
             arguments: {
               'type': 'video_part',
@@ -105,7 +105,7 @@ class NotificationCubit extends Cubit<NotificationState> {
             });
       }
       //couldn't check this case
-      else if (data![index].videoType == "video_basic") {
+      else if (data![index].notificationType == "video_basic") {
         Navigator.pushNamed(context, Routes.videoDetailsScreenRoute,
             arguments: {
               'type': 'video_basic',
