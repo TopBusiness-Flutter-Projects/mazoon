@@ -44,11 +44,10 @@ class FinalReviewScreen extends StatelessWidget {
                     ? GridView.builder(
                         shrinkWrap: true,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          childAspectRatio: 1,
-                          mainAxisSpacing: 15,
-                          crossAxisSpacing: getSize(context) / 66,
-                          crossAxisCount: 2,
-                        ),
+                            childAspectRatio: 1,
+                            mainAxisSpacing: 15,
+                            crossAxisSpacing: getSize(context) / 66,
+                            crossAxisCount: 2),
                         physics: NeverScrollableScrollPhysics(),
                         itemCount: cubit.finalReview.length,
                         itemBuilder: (BuildContext context, int index) {

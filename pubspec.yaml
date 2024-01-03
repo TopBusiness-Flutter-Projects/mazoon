@@ -103,7 +103,8 @@ dependencies:
   # new_version: ^0.3.1
   countdown_progress_indicator: ^0.1.2
   device_info_plus:
-  upgrader:
+  upgrader: 
+  pod_player: ^0.2.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
