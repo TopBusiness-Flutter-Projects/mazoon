@@ -355,14 +355,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ProfileDataItem(
                                     title: 'subtype'.tr(),
                                     data: cubit.userModel!.data!.center),
-                                ProfileDataItem(
-                                    title: 'subscription_start'.tr(),
-                                    data: DateFormat('yyyy-MM-dd').format(
-                                        cubit.userModel!.data!.dateStartCode)),
-                                ProfileDataItem(
-                                    title: 'subscription_end'.tr(),
-                                    data: DateFormat('yyyy-MM-dd').format(
-                                        cubit.userModel!.data!.dateEndCode)),
+                                cubit.userModel?.data!.dateStartCode == null
+                                    ? Container()
+                                    : ProfileDataItem(
+                                        title: 'subscription_start'.tr(),
+                                        data: DateFormat('yyyy-MM-dd').format(
+                                            cubit.userModel!.data!
+                                                .dateStartCode!)),
+                                cubit.userModel?.data!.dateEndCode == null
+                                    ? Container()
+                                    : ProfileDataItem(
+                                        title: 'subscription_end'.tr(),
+                                        data: DateFormat('yyyy-MM-dd').format(
+                                            cubit.userModel!.data!
+                                                .dateEndCode!)),
                                 CustomButton(
                                     height: getSize(context) / 8,
                                     text: 'subscription_renewal'.tr(),

@@ -26,14 +26,14 @@ class AudioLessonModel {
 
 class LessonAudioData {
   int id;
-  String name;
-  String imageOfSubjectClass;
-  String type;
-  int size;
-  String backgroundColor;
-  String status;
-  String subscribe;
-  String link;
+  String? name;
+  String? imageOfSubjectClass;
+  String? type;
+  int? size;
+  String? backgroundColor;
+  String? status;
+  String? subscribe;
+  String? link;
   DateTime createdAt;
   DateTime updatedAt;
 

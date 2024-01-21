@@ -34,8 +34,8 @@ class User {
     required this.code,
     required this.season,
     required this.term,
-    required this.dateStartCode,
-    required this.dateEndCode,
+    this.dateStartCode,
+    this.dateEndCode,
     required this.report,
     required this.center,
     this.country,
@@ -48,7 +48,7 @@ class User {
   int id;
   String report;
   String name;
-  dynamic email;
+  String? email;
   String phone;
   String fatherPhone;
   String center;
@@ -57,10 +57,9 @@ class User {
   String code;
   Season season;
   Term term;
-  DateTime dateStartCode;
-  DateTime dateEndCode;
+  DateTime? dateStartCode;
+  DateTime? dateEndCode;
   Country? country;
-
   Country? city;
   String token;
   DateTime createdAt;
@@ -115,9 +114,9 @@ class User {
         "season": season.toJson(),
         "term": term.toJson(),
         "date_start_code":
-            "${dateStartCode.year.toString().padLeft(4, '0')}-${dateStartCode.month.toString().padLeft(2, '0')}-${dateStartCode.day.toString().padLeft(2, '0')}",
+            "${dateStartCode?.year.toString().padLeft(4, '0')}-${dateStartCode?.month.toString().padLeft(2, '0')}-${dateStartCode?.day.toString().padLeft(2, '0')}",
         "date_end_code":
-            "${dateEndCode.year.toString().padLeft(4, '0')}-${dateEndCode.month.toString().padLeft(2, '0')}-${dateEndCode.day.toString().padLeft(2, '0')}",
+            "${dateEndCode?.year.toString().padLeft(4, '0')}-${dateEndCode?.month.toString().padLeft(2, '0')}-${dateEndCode?.day.toString().padLeft(2, '0')}",
         "country": country!.toJson(),
         "city": city!.toJson(),
         "token": token,

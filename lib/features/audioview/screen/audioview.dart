@@ -23,7 +23,7 @@ class _AudioViewScreenState extends State<AudioViewScreen> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(
-                  widget.audioLessonData[widget.index].imageOfSubjectClass,
+                  widget.audioLessonData[widget.index].imageOfSubjectClass!,
                 ),
                 onError: (exception, stackTrace) {},
                 fit: BoxFit.cover,
@@ -73,14 +73,14 @@ class _AudioViewScreenState extends State<AudioViewScreen> {
                                         radius: getSize(context) / 12,
                                         backgroundImage: NetworkImage(widget
                                             .audioLessonData[widget.index]
-                                            .imageOfSubjectClass),
+                                            .imageOfSubjectClass!),
                                       ),
                                       Padding(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: getSize(context) / 66),
                                         child: Text(
                                           widget.audioLessonData[widget.index]
-                                              .name,
+                                              .name!,
                                           maxLines: 2,
                                           overflow: TextOverflow.ellipsis,
                                           textAlign: TextAlign.right,
@@ -126,7 +126,7 @@ class _AudioViewScreenState extends State<AudioViewScreen> {
                                     },
                                     onDelete: () {},
                                     source: widget
-                                        .audioLessonData[widget.index].link,
+                                        .audioLessonData[widget.index].link!,
                                   ),
                                 )
                               ],

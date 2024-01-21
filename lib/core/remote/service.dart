@@ -73,9 +73,7 @@ class ServiceApi {
       final response = await dio.post(
         EndPoints.userUrl,
         formDataIsEnabled: true,
-        body: {
-          'code': code,
-        },
+        body: {'code': code},
         options: Options(
           headers: {'Accept-Language': lan},
         ),
