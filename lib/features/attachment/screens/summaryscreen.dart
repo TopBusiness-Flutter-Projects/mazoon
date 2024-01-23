@@ -62,10 +62,10 @@ class _SummaryScreenState extends State<SummaryScreen> {
                                             builder: (context) => PdfScreen(
                                                   pdfLink: cubit
                                                       .pdfLessonData[index]
-                                                      .link,
+                                                      .link!,
                                                   pdfTitle: cubit
                                                       .pdfLessonData[index]
-                                                      .name,
+                                                      .name!,
                                                 )));
                                   } else {
                                     errorGetBar('have_access'.tr());
@@ -78,7 +78,7 @@ class _SummaryScreenState extends State<SummaryScreen> {
                                       EdgeInsets.all(getSize(context) / 100),
                                   decoration: BoxDecoration(
                                       color: HexColor(cubit.pdfLessonData[index]
-                                          .backgroundColor),
+                                          .backgroundColor!),
                                       borderRadius: BorderRadius.circular(
                                           getSize(context) / 32)),
                                   width: double.infinity,
@@ -91,14 +91,14 @@ class _SummaryScreenState extends State<SummaryScreen> {
                                             MainAxisAlignment.start,
                                         children: [
                                           Text(
-                                            cubit.pdfLessonData[index].name,
+                                            cubit.pdfLessonData[index].name!,
                                             overflow: TextOverflow.clip,
                                             maxLines: 1,
                                             style: TextStyle(
                                                 color: darken(
                                                     HexColor(cubit
                                                         .pdfLessonData[index]
-                                                        .backgroundColor),
+                                                        .backgroundColor!),
                                                     0.4),
                                                 fontWeight: FontWeight.w700,
                                                 fontSize:
@@ -124,7 +124,7 @@ class _SummaryScreenState extends State<SummaryScreen> {
                                             // ),
                                             child: FutureBuilder<double>(
                                               future: getPdfSize(cubit
-                                                  .pdfLessonData[index].link),
+                                                  .pdfLessonData[index].link!),
                                               builder: (context, snapshot) {
                                                 if (snapshot.connectionState ==
                                                     ConnectionState.waiting) {
@@ -138,7 +138,7 @@ class _SummaryScreenState extends State<SummaryScreen> {
                                                               HexColor(cubit
                                                                   .pdfLessonData[
                                                                       index]
-                                                                  .backgroundColor),
+                                                                  .backgroundColor!),
                                                               0.4)));
                                                 } else {
                                                   return Text(
@@ -148,7 +148,7 @@ class _SummaryScreenState extends State<SummaryScreen> {
                                                               HexColor(cubit
                                                                   .pdfLessonData[
                                                                       index]
-                                                                  .backgroundColor),
+                                                                  .backgroundColor!),
                                                               0.4)));
                                                 }
                                               },
@@ -161,7 +161,7 @@ class _SummaryScreenState extends State<SummaryScreen> {
                                         //color from back
                                         backgroundColor: darken(
                                             HexColor(cubit.pdfLessonData[index]
-                                                .backgroundColor),
+                                                .backgroundColor!),
                                             0.4),
                                         child: MySvgWidget(
                                             path: cubit.pdfLessonData[index]

@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:new_mazoon/features/homePage/widget/live_exam_widget.dart';
 import 'package:new_mazoon/features/liveexam/cubit/cubit.dart';
 import 'package:new_mazoon/features/liveexam/cubit/state.dart';
 import 'package:new_mazoon/features/liveexam/screen/liveexamresult.dart';

@@ -296,7 +296,6 @@ class VideoDetailsCubit extends Cubit<VideoDetailsState> {
     ).whenComplete(
       () {
         successGetBar('success_download_v'.tr());
-
         print(videoModel!.name);
         videoModel!.progress = 0;
         emit(VideoDetailsLoaded());

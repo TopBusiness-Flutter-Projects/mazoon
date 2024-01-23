@@ -1,5 +1,5 @@
 class LessonExamModel2 {
-  LessonExamData2 data;
+  LessonExamData2? data;
   String message;
   int code;
 
@@ -11,13 +11,15 @@ class LessonExamModel2 {
 
   factory LessonExamModel2.fromJson(Map<String, dynamic> json) =>
       LessonExamModel2(
-        data: LessonExamData2.fromJson(json["data"]),
+        data: json["data"] == null
+            ? null
+            : LessonExamData2.fromJson(json["data"]),
         message: json["message"],
         code: json["code"],
       );
 
   Map<String, dynamic> toJson() => {
-        "data": data.toJson(),
+        "data": data!.toJson(),
         "message": message,
         "code": code,
       };

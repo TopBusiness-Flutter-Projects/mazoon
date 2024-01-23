@@ -46,3 +46,7 @@ class HomePageApplyLiveLoadingClass extends HomePageState {}
 class HomePageApplyLiveLoadedClass extends HomePageState {}
 
 class HomePageApplyLiveErrorClass extends HomePageState {}
+
+class PDFRevisionLoaded extends HomePageState {}
+
+class PDFByIdLoaded extends HomePageState {}

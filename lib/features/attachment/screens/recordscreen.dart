@@ -73,7 +73,7 @@ class _RecordScreenScreenState extends State<RecordScreenScreen> {
                                   decoration: BoxDecoration(
                                       color: HexColor(cubit
                                           .audioLessonData[index]
-                                          .backgroundColor),
+                                          .backgroundColor!),
                                       borderRadius: BorderRadius.circular(
                                           getSize(context) / 32)),
                                   width: double.infinity,
@@ -86,7 +86,8 @@ class _RecordScreenScreenState extends State<RecordScreenScreen> {
                                             MainAxisAlignment.start,
                                         children: [
                                           Text(
-                                            cubit.audioLessonData[index].name,
+                                            cubit.audioLessonData[index].name ??
+                                                '',
                                             overflow: TextOverflow.clip,
                                             maxLines: 1,
                                             style: TextStyle(
@@ -95,7 +96,7 @@ class _RecordScreenScreenState extends State<RecordScreenScreen> {
                                                       cubit
                                                           .audioLessonData[
                                                               index]
-                                                          .backgroundColor,
+                                                          .backgroundColor!,
                                                     ),
                                                     .4),
                                                 fontWeight: FontWeight.w700,
@@ -114,7 +115,7 @@ class _RecordScreenScreenState extends State<RecordScreenScreen> {
                                                         cubit
                                                             .audioLessonData[
                                                                 index]
-                                                            .backgroundColor,
+                                                            .backgroundColor!,
                                                       ),
                                                       .4),
                                                   size: getSize(context) / 22),
@@ -123,14 +124,14 @@ class _RecordScreenScreenState extends State<RecordScreenScreen> {
                                                     horizontal:
                                                         getSize(context) / 44),
                                                 child: Text(
-                                                  '${cubit.audioLessonData[index].size} min',
+                                                  '${cubit.audioLessonData[index].size ?? 0} min',
                                                   style: TextStyle(
                                                     color: darken(
                                                         HexColor(
                                                           cubit
                                                               .audioLessonData[
                                                                   index]
-                                                              .backgroundColor,
+                                                              .backgroundColor!,
                                                         ),
                                                         .4),
                                                   ),
@@ -146,7 +147,7 @@ class _RecordScreenScreenState extends State<RecordScreenScreen> {
                                         backgroundColor: darken(
                                             HexColor(
                                               cubit.audioLessonData[index]
-                                                  .backgroundColor,
+                                                  .backgroundColor!,
                                             ),
                                             .4),
                                         child: MySvgWidget(

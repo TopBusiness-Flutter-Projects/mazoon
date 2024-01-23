@@ -30,7 +30,8 @@ class _StartTripScreenState extends State<StartTripScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
-    _tabController.animateTo(context.read<StartTripCubit>().currentIndex);
+    _tabController.animateTo(context.read<StartTripCubit>().currentIndex,
+        curve: Curves.easeInOut, duration: Duration(seconds: 1));
   }
 
   @override
@@ -61,12 +62,14 @@ class _StartTripScreenState extends State<StartTripScreen>
                           onTap: () {
                             cubit.selectTap(index);
                             print(cubit.currentIndex);
-                            _tabController.animateTo(index);
+                            _tabController.animateTo(index,
+                                curve: Curves.easeInOut,
+                                duration: Duration(seconds: 1));
                           },
                           child: Container(
                             padding: EdgeInsets.symmetric(
-                              horizontal: getSize(context) / 10,
-                              vertical: 10,
+                              horizontal: getSize(context) / 44,
+                              vertical: 8,
                             ),
                             decoration: BoxDecoration(
                               color: cubit.currentIndex == index

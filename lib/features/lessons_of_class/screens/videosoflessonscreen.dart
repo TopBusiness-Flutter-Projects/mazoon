@@ -168,11 +168,11 @@ class _VideoLessonScreenState extends State<VideoLessonScreen> {
                                                     cubit.videosofLessons[index]
                                                         .name,
                                                     maxLines: 2,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
+                                                    // overflow: TextOverflow.clip,
                                                     style: TextStyle(
                                                       fontSize:
-                                                          getSize(context) / 26,
+                                                          getSize(context) /
+                                                              26.5,
                                                       fontWeight:
                                                           FontWeight.w700,
                                                     ),

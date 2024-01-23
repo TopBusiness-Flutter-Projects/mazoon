@@ -56,7 +56,7 @@ class ItemOfFinalReviewWidget extends StatelessWidget {
         ),
         child: Column(
           mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: getSize(context) / 22),
             Row(
@@ -66,7 +66,7 @@ class ItemOfFinalReviewWidget extends StatelessWidget {
                 SizedBox(width: getSize(context) / 44),
                 Padding(
                   padding:
-                      EdgeInsets.symmetric(horizontal: getSize(context) / 44),
+                      EdgeInsets.symmetric(horizontal: getSize(context) / 66),
                   child: MySvgWidget(
                       path: model.type == 'video'
                           ? ImageAssets.videoIcon
@@ -81,42 +81,48 @@ class ItemOfFinalReviewWidget extends StatelessWidget {
                     maxLines: 2,
                     style: TextStyle(
                       color: AppColors.white,
-                      fontSize: getSize(context) / 26,
-                      fontWeight: FontWeight.w700,
+                      fontSize: getSize(context) / 22,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),
               ],
             ),
             Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                ManageNetworkImage(
-                  imageUrl: model.image!,
-                  height: getSize(context) / 6,
-                  width: getSize(context) / 6,
-                ),
-                model.type == 'video'
-                    ? Container(
-                        // color: AppColors.red,
-                        child: MySvgWidget(
-                          path: ImageAssets.clockIcon,
-                          imageColor: AppColors.white,
-                          size: getSize(context) / 24,
-                        ),
-                      )
-                    : SizedBox(),
-                SizedBox(
-                    width: model.type == 'video' ? getSize(context) / 100 : 0),
-                Flexible(
-                  child: Padding(
-                    padding: EdgeInsets.all(model.type == 'video' ? 8.0 : 0),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 3.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  ManageNetworkImage(
+                    imageUrl: model.image!,
+                    height: getSize(context) / 6.2,
+                    width: getSize(context) / 6.2,
+                  ),
+                  // Spacer(),
+                  Flexible(fit: FlexFit.tight, child: Container()),
+                  model.type == 'video'
+                      ? Container(
+                          padding:
+                              EdgeInsets.all(model.type == 'video' ? 5.0 : 0),
+                          // color: AppColors.red,
+                          child: MySvgWidget(
+                            path: ImageAssets.clockIcon,
+                            imageColor: AppColors.white,
+                            size: getSize(context) / 24,
+                          ),
+                        )
+                      : SizedBox(),
+                  // SizedBox(
+                  //     width: model.type == 'video' ? getSize(context) / 100 : 0),
+                  Padding(
+                    padding: EdgeInsets.all(model.type == 'video' ? 3 : 0),
                     child: Text(
                       model.type == 'video'
                           ? extractHourAndMinutes(model.time!).toString()
                           : changeToMegaByte(model.size.toString()),
+                      maxLines: 1,
                       textDirection: model.type == 'video'
                           ? TextDirection.rtl
                           : TextDirection.ltr,
@@ -127,30 +133,29 @@ class ItemOfFinalReviewWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
-                SizedBox(width: model.type != 'video' ? 10 : 0),
-                model.type == 'video'
-                    ? SizedBox()
-                    : InkWell(
-                        onTap: () {
-                          context.read<StartTripCubit>().dowanload(model);
-                        },
-                        child: SizedBox(
-                          width: getSize(context) / 44,
-                          height: getSize(context) / 44,
-                          child: model.progress != 0
-                              ? CircularProgressIndicator(
-                                  value: model.progress,
-                                  backgroundColor: AppColors.white,
-                                  color: AppColors.primary,
-                                )
-                              : DownloadIconWidget(
-                                  color: HexColor(model.backgroundColor!),
-                                ),
+                  model.type == 'video'
+                      ? SizedBox()
+                      : InkWell(
+                          onTap: () {
+                            context.read<StartTripCubit>().dowanload(model);
+                          },
+                          child: SizedBox(
+                            width: getSize(context) / 44,
+                            height: getSize(context) / 44,
+                            child: model.progress != 0
+                                ? CircularProgressIndicator(
+                                    value: model.progress,
+                                    backgroundColor: AppColors.white,
+                                    color: AppColors.primary,
+                                  )
+                                : DownloadIconWidget(
+                                    color: HexColor(model.backgroundColor!),
+                                  ),
+                          ),
                         ),
-                      ),
-                SizedBox(width: model.type == 'video' ? 0 : 8),
-              ],
+                  SizedBox(width: model.type == 'video' ? 0 : 8),
+                ],
+              ),
             ),
             SizedBox(height: getSize(context) / 88),
           ],
