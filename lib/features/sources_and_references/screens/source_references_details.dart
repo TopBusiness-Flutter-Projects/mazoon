@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:new_mazoon/core/utils/dialogs.dart';
 import 'package:new_mazoon/core/widgets/network_image.dart';
 import 'package:new_mazoon/features/sources_and_references/cubit/source_references_cubit.dart';
 import '../../../core/utils/app_colors.dart';

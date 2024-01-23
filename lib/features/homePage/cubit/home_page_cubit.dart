@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:countdown_progress_indicator/countdown_progress_indicator.dart';
+import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +10,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:new_mazoon/core/utils/dialogs.dart';
 import 'package:new_mazoon/core/utils/show_dialog.dart';
 import 'package:new_mazoon/features/liveexam/screen/liveexamresult.dart';
+import 'package:path_provider/path_provider.dart';
 import '../../../../core/models/user_model.dart';
 import '../../../../core/preferences/preferences.dart';
 import '../../../config/routes/app_routes.dart';
@@ -299,17 +302,20 @@ class HomePageCubit extends Cubit<HomePageState> {
     }, (r) {
       if (r.code == 200) {
         Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => LiveExamResultScreen(
-                id: liveModel!.id.toString(),
-                isFromLiveExam: true,
-              ),
-            ));
+          context,
+          MaterialPageRoute(
+            builder: (context) => LiveExamResultScreen(
+              id: liveModel!.id.toString(),
+              isFromLiveExam: true,
+            ),
+          ),
+        );
       } else if (r.code == 201) {
         Navigator.pop(context);
         Navigator.pop(context);
         Navigator.pushNamed(context, Routes.liveExamScreen);
+        Fluttertoast.showToast(msg: r.message);
+      } else {
         Fluttertoast.showToast(msg: r.message);
       }
       emit(HomePageApplyLiveLoadedClass());
@@ -335,5 +341,30 @@ class HomePageCubit extends Cubit<HomePageState> {
       errorGetBar(r.message);
       emit(UserScreenshotLoadedClass());
     });
+  }
+
+  downloadPdf(FinalReviewModel model) async {
+    final dio = Dio();
+    // int index = sourcesReferencesList.indexOf(model);
+    var dir = await (Platform.isIOS
+        ? getApplicationSupportDirectory()
+        : getApplicationDocumentsDirectory());
+    await dio.download(
+      model.pathFile!,
+      dir.path + "/pdf/" + model.name!.split("/").toList().last + '.pdf',
+      onReceiveProgress: (count, total) {
+        model.progress = (count / total);
+        // sourcesReferencesList.removeAt(index);
+        // sourcesReferencesList.insert(index, model);
+        emit(PDFRevisionLoaded());
+      },
+    ).whenComplete(
+      () {
+        successGetBar('success_download'.tr());
+        model.progress = 0;
+
+        emit(PDFByIdLoaded());
+      },
+    );
   }
 }

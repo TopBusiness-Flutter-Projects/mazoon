@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:new_mazoon/core/utils/getsize.dart';
 import 'package:new_mazoon/core/widgets/network_image.dart';
 import 'package:new_mazoon/features/homePage/cubit/home_page_cubit.dart';
@@ -62,6 +63,7 @@ class _LiveExamQuestionsState extends State<LiveExamQuestions> {
           //     exam_type: widget.exam_type,
           // context: context);
           context.read<HomePageCubit>().applyLiveExam(context: context);
+          Fluttertoast.showToast(msg: 'exam_out'.tr());
           setState(() {
             _isActive = true;
             _minutesLeft = context.read<HomePageCubit>().quizMinutes;
@@ -457,9 +459,19 @@ class _LiveExamQuestionsState extends State<LiveExamQuestions> {
                                                                       Flexible(
                                                                         fit: FlexFit
                                                                             .tight,
-                                                                        child: Text(
-                                                                            cubit.liveExamQuestions!.data.questions[index].answers[index2].answer,
-                                                                            style: TextStyle(fontSize: getSize(context) / 24, fontWeight: FontWeight.w900, color: AppColors.black)),
+                                                                        child:
+                                                                            Text(
+                                                                          cubit
+                                                                              .liveExamQuestions!
+                                                                              .data
+                                                                              .questions[index]
+                                                                              .answers[index2]
+                                                                              .answer,
+                                                                          style: TextStyle(
+                                                                              fontSize: getSize(context) / 24,
+                                                                              fontWeight: FontWeight.w900,
+                                                                              color: AppColors.black),
+                                                                        ),
                                                                       ),
                                                                     ],
                                                                   ),

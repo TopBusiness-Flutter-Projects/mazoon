@@ -41,7 +41,7 @@ class _VideoDetailsState extends State<VideoDetails> {
   void initState() {
     super.initState();
     context.read<VideoDetailsCubit>().getDirectionPath();
-    context.read<VideoDetailsCubit>().videoModel = null;
+    // context.read<VideoDetailsCubit>().videoModel = null;
     context
         .read<VideoDetailsCubit>()
         .getVideoDetails(widget.videoId!, widget.type!);
