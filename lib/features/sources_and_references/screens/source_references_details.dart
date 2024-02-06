@@ -39,83 +39,85 @@ class SourceReferencesDetails extends StatelessWidget {
                   return ListView(
                     children: [
                       SizedBox(height: getSize(context) / 3),
-                      InkWell(
-                        onTap: () {
-                          print(cubit.referenceModel.filePath);
-                          print("cubit.referenceModel.filePath");
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => PdfScreen(
-                                pdfTitle: cubit.referenceModel.title!,
-                                pdfLink: cubit.referenceModel.filePath!,
-                              ),
-                            ),
-                          );
-
-                          ///read video
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: Container(
-                            // padding: EdgeInsets.all(12),
-                            height: getSize(context) / 3.5,
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                              color: AppColors.greenDownloadColor,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                cubit.referenceModel.progress == 0 &&
-                                        File(cubit.dirpath.path +
-                                                "/pdf/" +
-                                                cubit.referenceModel.title!
-                                                    .split("/")
-                                                    .toList()
-                                                    .last +
-                                                '.pdf')
-                                            .existsSync()
-                                    ? SizedBox(
-                                        width: getSize(context) / 12,
-                                        height: getSize(context) / 12,
-                                        child: Icon(
-                                          Icons.check_circle,
-                                          color: AppColors.success,
-                                        ))
-                                    : InkWell(
-                                        onTap: () {
-                                          cubit.downloadPdf(
-                                              cubit.referenceModel);
-                                        },
-                                        child: cubit.referenceModel.progress !=
-                                                0
-                                            ? Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  value: cubit
-                                                      .referenceModel.progress,
-                                                  backgroundColor:
-                                                      AppColors.white,
-                                                  color: AppColors.primary,
-                                                ),
-                                              )
-                                            : Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: DownloadIconWidget(
-                                                  color: AppColors.white,
-                                                  iconColor: AppColors
-                                                      .greenDownloadColor,
-                                                ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Container(
+                          // padding: EdgeInsets.all(12),
+                          height: getSize(context) / 3.5,
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            color: AppColors.greenDownloadColor,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              cubit.referenceModel.progress == 0 &&
+                                      File(cubit.dirpath.path +
+                                              "/pdf/" +
+                                              cubit.referenceModel.title!
+                                                  .split("/")
+                                                  .toList()
+                                                  .last +
+                                              '.pdf')
+                                          .existsSync()
+                                  ? SizedBox(
+                                      width: getSize(context) / 12,
+                                      height: getSize(context) / 12,
+                                      child: Icon(
+                                        Icons.check_circle,
+                                        color: AppColors.success,
+                                      ))
+                                  : cubit.referenceModel.progress != 0
+                                      ? Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: CircularProgressIndicator(
+                                            value:
+                                                cubit.referenceModel.progress,
+                                            backgroundColor: AppColors.white,
+                                            color: AppColors.primary,
+                                          ),
+                                        )
+                                      : GestureDetector(
+                                          onTap: () {
+                                            print('00:00');
+                                            cubit.downloadPdf(
+                                                cubit.referenceModel);
+                                          },
+                                          child: Container(
+                                            color: Colors.blue,
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: DownloadIconWidget(
+                                                color: AppColors.white,
+                                                iconColor: AppColors
+                                                    .greenDownloadColor,
                                               ),
+                                            ),
+                                          ),
+                                        ),
+
+                              Flexible(
+                                fit: FlexFit.tight,
+                                child: InkWell(
+                                  onTap: () {
+                                    print(cubit.referenceModel.filePath);
+                                    print("cubit.referenceModel.filePath");
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => PdfScreen(
+                                          pdfTitle: cubit.referenceModel.title!,
+                                          pdfLink:
+                                              cubit.referenceModel.filePath!,
+                                        ),
                                       ),
-                                Flexible(
-                                  fit: FlexFit.tight,
+                                    );
+
+                                    ///read video
+                                  },
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Column(
@@ -140,7 +142,24 @@ class SourceReferencesDetails extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                Column(
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  print(cubit.referenceModel.filePath);
+                                  print("cubit.referenceModel.filePath");
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => PdfScreen(
+                                        pdfTitle: cubit.referenceModel.title!,
+                                        pdfLink: cubit.referenceModel.filePath!,
+                                      ),
+                                    ),
+                                  );
+
+                                  ///read video
+                                },
+                                child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
@@ -151,27 +170,27 @@ class SourceReferencesDetails extends StatelessWidget {
                                       borderRadius: 8,
                                     ),
                                   ],
-                                )
-                                // Column(
-                                //   crossAxisAlignment: CrossAxisAlignment.end,
-                                //   mainAxisAlignment: MainAxisAlignment.end,
-                                //   children: [
-                                //     Padding(
-                                //       padding: const EdgeInsets.only(left: 8.0),
-                                //       child: StrokeText(
-                                //         text: "",
-                                //         textStyle: TextStyle(
-                                //             fontSize: 45,
-                                //             fontFamily: 'Mada',
-                                //             color: AppColors.error),
-                                //         strokeColor: AppColors.white,
-                                //         strokeWidth: 4,
-                                //       ),
-                                //     ),
-                                //   ],
-                                // )
-                              ],
-                            ),
+                                ),
+                              )
+                              // Column(
+                              //   crossAxisAlignment: CrossAxisAlignment.end,
+                              //   mainAxisAlignment: MainAxisAlignment.end,
+                              //   children: [
+                              //     Padding(
+                              //       padding: const EdgeInsets.only(left: 8.0),
+                              //       child: StrokeText(
+                              //         text: "",
+                              //         textStyle: TextStyle(
+                              //             fontSize: 45,
+                              //             fontFamily: 'Mada',
+                              //             color: AppColors.error),
+                              //         strokeColor: AppColors.white,
+                              //         strokeWidth: 4,
+                              //       ),
+                              //     ),
+                              //   ],
+                              // )
+                            ],
                           ),
                         ),
                       ),

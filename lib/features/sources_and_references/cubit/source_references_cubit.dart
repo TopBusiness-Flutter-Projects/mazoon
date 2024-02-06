@@ -66,24 +66,27 @@ class SourceReferencesCubit extends Cubit<SourceReferencesState> {
     var dir = await (Platform.isIOS
         ? getApplicationSupportDirectory()
         : getApplicationDocumentsDirectory());
-    await dio.download(
-      model.filePath!,
-      dir.path + "/pdf/" + model.title!.split("/").toList().last + '.pdf',
-      onReceiveProgress: (count, total) {
-        model.progress = (count / total);
-        // sourcesReferencesList.removeAt(index);
-        // sourcesReferencesList.insert(index, model);
-        emit(PDFSourceReferencesByIdLoaded());
-      },
-    ).whenComplete(
-      () {
-        successGetBar('success_download'.tr());
-        model.progress = 0;
-        // sourcesReferencesList.removeAt(index);
-        // sourcesReferencesList.insert(index, model);
-        emit(PDFSourceReferencesByIdLoaded());
-      },
-    );
+    await dio
+        .download(
+          model.filePath!,
+          dir.path + "/pdf/" + model.title!.split("/").toList().last + '.pdf',
+          onReceiveProgress: (count, total) {
+            model.progress = (count / total);
+            // sourcesReferencesList.removeAt(index);
+            // sourcesReferencesList.insert(index, model);
+            emit(PDFSourceReferencesByIdLoaded());
+          },
+        )
+        .whenComplete(
+          () {},
+        )
+        .then((value) {
+          successGetBar('success_download'.tr());
+          model.progress = 0;
+          // sourcesReferencesList.removeAt(index);
+          // sourcesReferencesList.insert(index, model);
+          emit(PDFSourceReferencesByIdLoaded());
+        });
   }
 
   downloadPdfLessons(SourcesReferencesByIdDatum model) async {
