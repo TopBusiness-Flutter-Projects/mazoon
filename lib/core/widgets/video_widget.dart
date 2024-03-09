@@ -7,10 +7,10 @@ import 'package:new_mazoon/features/video_details/cubit/video_details_cubit.dart
 import 'package:video_player/video_player.dart';
 
 class VideoWidget extends StatefulWidget {
-  VideoWidget({Key? key, required this.isTablet, required this.videoLink})
-      : super(key: key);
-  final String videoLink;
-  bool isTablet;
+VideoWidget({Key? key, required this.isTablet, required this.videoLink})
+    : super(key: key);
+final String videoLink;
+bool isTablet;
 
   @override
   State<VideoWidget> createState() => _VideoWidgetState();

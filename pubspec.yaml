@@ -104,6 +104,7 @@ dependencies:
   countdown_progress_indicator: ^0.1.2
   device_info_plus:
   upgrader: 
+  lecle_yoyo_player: ^0.0.6
 dev_dependencies:
   flutter_test:
     sdk: flutter

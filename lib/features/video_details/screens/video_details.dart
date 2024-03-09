@@ -16,6 +16,8 @@ import '../../../core/utils/assets_manager.dart';
 import '../../../core/widgets/custom_textfield.dart';
 import '../../../core/widgets/music_animation.dart';
 import '../../../core/widgets/no_data_widget.dart';
+import '../../../core/widgets/pod_player.dart';
+import '../../../core/widgets/pod_player_youtube.dart';
 import '../../../core/widgets/show_loading_indicator.dart';
 import '../../../core/widgets/video_widget.dart';
 import '../../../core/widgets/youtube_video_view.dart';
@@ -176,6 +178,13 @@ class _VideoDetailsState extends State<VideoDetails> {
                             shrinkWrap: true,
                             padding: EdgeInsets.zero,
                             children: [
+                              // cubit.videoModel!.isYoutube == 1
+                              //     ? PlayVideoFromYoutube(
+                              //         link: cubit.videoModel!.link,
+                              //         videoTumbnail: '')
+                              //     : PlayVideoFromNetwork(
+                              //         link: cubit.videoModel!.link,
+                              //         videoTumbnail: ''),
                               cubit.videoModel!.isYoutube == 1
                                   ? YoutubeVideoPlayer(
                                       isTablet: getSize(context) >= 700
