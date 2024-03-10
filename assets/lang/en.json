@@ -241,6 +241,8 @@
   "subtype": "Subtype  :",
   "subscription_start": "Subscription start  :",
   "subscription_end": "Subscription end  :",
+  "subscription_months": "Subscription Months",
+
   "subscription_renewal": "Subscription renewal",
   "my_qualifications": "Qualifications",
   "my_experiences": "Experiences",

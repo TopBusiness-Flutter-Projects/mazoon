@@ -65,7 +65,6 @@ Future<void> main() async {
     badge: true,
     sound: true,
   );
-  
 
   ///Cloud messaging step 2
   ////--------------------------------------------------------------

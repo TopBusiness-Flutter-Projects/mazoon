@@ -40,6 +40,7 @@ class User {
     required this.center,
     this.country,
     this.city,
+    this.subscriptionMonth,
     required this.token,
     required this.createdAt,
     required this.updatedAt,
@@ -49,6 +50,8 @@ class User {
   String report;
   String name;
   String? email;
+  List<String>? subscriptionMonth;
+
   String phone;
   String fatherPhone;
   String center;
@@ -70,6 +73,9 @@ class User {
         name: json["name"],
         center: json['center'],
         report: json['report'],
+        subscriptionMonth: json["subscription_month"] == null
+            ? []
+            : List<String>.from(json["subscription_month"]!.map((x) => x)),
         email: json["email"],
         phone: json["phone"] ?? 'no phone',
         fatherPhone: json["father_phone"] ?? 'no father phone',
@@ -112,6 +118,9 @@ class User {
         "center": center,
         "code": code,
         "season": season.toJson(),
+        "subscription_month": subscriptionMonth == null
+            ? []
+            : List<dynamic>.from(subscriptionMonth!.map((x) => x)),
         "term": term.toJson(),
         "date_start_code":
             "${dateStartCode?.year.toString().padLeft(4, '0')}-${dateStartCode?.month.toString().padLeft(2, '0')}-${dateStartCode?.day.toString().padLeft(2, '0')}",
