@@ -1,5 +1,5 @@
 class EndPoints {
-  static const String baseUrl = 'http://192.168.1.21:8000/api/';
+  static const String baseUrl = 'https://elmazone.topbusiness.io/api/';
   // 'https://platform.egymoe.com/api/';
   //'https://elmazone.topbusiness.io/api/';
   static const String userUrl = '${baseUrl}auth/login';
