@@ -31,6 +31,8 @@ class _HomePageState extends State<HomePage> {
     });
     context.read<HomePageCubit>().getUserData().then((value) =>
         context.read<HomePageCubit>().getHomePageData(context: context));
+    context.read<HomePageCubit>().accessFirstVideoCustom();
+
     // _checkVersion();
     super.initState();
   }

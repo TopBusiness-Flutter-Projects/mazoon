@@ -24,6 +24,11 @@ class HomePageLoadingClass extends HomePageState {}
 class HomePageLoadedClass extends HomePageState {}
 
 class HomePageErrorClass extends HomePageState {}
+class HomePageLoading2Class extends HomePageState {}
+
+class HomePageLoaded2Class extends HomePageState {}
+
+class HomePageError2Class extends HomePageState {}
 
 class UserScreenshotLoadingClass extends HomePageState {}
 
