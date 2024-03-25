@@ -92,7 +92,7 @@ class _LessonsClassScreenState extends State<LessonsClassScreen> {
                                         child: ClipPath(
                                           clipper: CCustomClipper(),
                                           child: ManageNetworkImage(
-                                            imageUrl: cubit.oneClass!.image ??
+                                            imageUrl: cubit.oneClass?.image ??
                                                 "https://elmazone.topbusiness.io/sliders/1.jpg",
                                           ),
                                         ),

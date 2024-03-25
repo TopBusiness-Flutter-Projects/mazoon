@@ -534,56 +534,61 @@ class _userScreenState extends State<LoginScreen> {
                 Flexible(
                   child: Container(
                     height: getSize(context) / 1.8,
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: cubit.communicationData!.phones!.length,
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                            onTap: () {
-                              phoneCallMethod(
-                                cubit.communicationData!.phones![index].phone,
-                              );
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.call,
-                                    color: AppColors.blueLiteColor,
-                                    size: getSize(context) / 12,
-                                  ),
-                                  SizedBox(width: 20),
-                                  Flexible(
-                                    fit: FlexFit.tight,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
+                    child: cubit.communicationData == null
+                        ? Container()
+                        : ListView.builder(
+                            shrinkWrap: true,
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: cubit.communicationData!.phones!.length,
+                            itemBuilder: (context, index) {
+                              return InkWell(
+                                  onTap: () {
+                                    phoneCallMethod(
+                                      cubit.communicationData!.phones![index]
+                                          .phone,
+                                    );
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
                                       children: [
-                                        Text(
-                                          cubit.communicationData!
-                                              .phones![index].phone,
-                                          style: TextStyle(
-                                            fontSize: getSize(context) / 24,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                        Icon(
+                                          Icons.call,
+                                          color: AppColors.blueLiteColor,
+                                          size: getSize(context) / 12,
                                         ),
-                                        Text(
-                                          cubit.communicationData!
-                                              .phones![index].note,
-                                          style: TextStyle(
-                                              fontSize: getSize(context) / 28),
+                                        SizedBox(width: 20),
+                                        Flexible(
+                                          fit: FlexFit.tight,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Text(
+                                                cubit.communicationData!
+                                                    .phones![index].phone,
+                                                style: TextStyle(
+                                                  fontSize:
+                                                      getSize(context) / 24,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              Text(
+                                                cubit.communicationData!
+                                                    .phones![index].note,
+                                                style: TextStyle(
+                                                    fontSize:
+                                                        getSize(context) / 28),
+                                              )
+                                            ],
+                                          ),
                                         )
                                       ],
                                     ),
-                                  )
-                                ],
-                              ),
-                            ));
-                      },
-                    ),
+                                  ));
+                            },
+                          ),
                   ),
                 ),
                 SizedBox(height: getSize(context) / 22),

@@ -332,6 +332,15 @@ class HomePageCubit extends Cubit<HomePageState> {
     });
   }
 
+  accessFirstVideoCustom() async {
+    emit(HomePageLoading2Class());
+    final response = await api.accessFirstVideoCustom();
+    response.fold((l) => emit(HomePageError2Class()), (r) {
+      emit(HomePageLoaded2Class());
+      //!
+    });
+  }
+
   userScreenshot() async {
     emit(UserScreenshotLoadingClass());
     final response = await api.userScreenshot();

@@ -1,6 +1,7 @@
 class EndPoints {
-  static const String baseUrl =
-      'https://platform.egymoe.com/api/'; //'https://elmazone.topbusiness.io/api/';
+  static const String baseUrl = 'https://elmazone.topbusiness.io/api/';
+  // 'https://platform.egymoe.com/api/';
+  //'https://elmazone.topbusiness.io/api/';
   static const String userUrl = '${baseUrl}auth/login';
   static const String onBoardingUrl = '${baseUrl}on-boarding';
   static const String homePageUrl = '${baseUrl}auth/home-page';
@@ -99,6 +100,8 @@ class EndPoints {
 
   static const String addNewSuggest = '${baseUrl}auth/add-suggest';
   static const String openFirstLesson = '${baseUrl}lesson/';
+  static const String accessFirstVideoCustom =
+      '${baseUrl}lesson/accessFirstVideoCustom';
   static const String userScreenshot = '${baseUrl}auth/user-add-screenshot';
   static const String AllMonthes = '${baseUrl}payments/all-months';
   static const String calDiscount =

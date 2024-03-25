@@ -355,20 +355,78 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ProfileDataItem(
                                     title: 'subtype'.tr(),
                                     data: cubit.userModel!.data!.center),
-                                cubit.userModel?.data!.dateStartCode == null
+                                // cubit.userModel?.data!.dateStartCode == null
+                                //     ? Container()
+                                //     : ProfileDataItem(
+                                //         title: 'subscription_start'.tr(),
+                                //         data: DateFormat('yyyy-MM-dd').format(
+                                //             cubit.userModel!.data!
+                                //                 .dateStartCode!)),
+
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 40.0),
+                                  child: Text(
+                                    'subscription_months'.tr(),
+                                    maxLines: 1,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: AppColors.liveExamGrayTextColor,
+                                      fontSize: getSize(context) / 22,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ),
+                                (cubit.userModel!.data!.subscriptionMonth!
+                                            .isEmpty ||
+                                        cubit.userModel?.data!
+                                                .subscriptionMonth ==
+                                            null)
                                     ? Container()
-                                    : ProfileDataItem(
-                                        title: 'subscription_start'.tr(),
-                                        data: DateFormat('yyyy-MM-dd').format(
-                                            cubit.userModel!.data!
-                                                .dateStartCode!)),
-                                cubit.userModel?.data!.dateEndCode == null
-                                    ? Container()
-                                    : ProfileDataItem(
-                                        title: 'subscription_end'.tr(),
-                                        data: DateFormat('yyyy-MM-dd').format(
-                                            cubit.userModel!.data!
-                                                .dateEndCode!)),
+                                    : GridView.builder(
+                                        padding: EdgeInsets.all(8),
+                                        shrinkWrap: true,
+                                        gridDelegate:
+                                            SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 4,
+                                                childAspectRatio: 3 / 1.6,
+                                                crossAxisSpacing: 0,
+                                                mainAxisSpacing: 0),
+                                        itemCount: cubit.userModel?.data!
+                                            .subscriptionMonth!.length,
+                                        itemBuilder: (context, index) {
+                                          return Container(
+                                            margin: EdgeInsets.all(10),
+                                            decoration: BoxDecoration(
+                                              color: AppColors.primary,
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      getSize(context) / 88),
+                                            ),
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              cubit.userModel?.data!
+                                                          .subscriptionMonth![
+                                                      index] ??
+                                                  '',
+                                              maxLines: 1,
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: AppColors.white,
+                                                fontSize: getSize(context) / 28,
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                // cubit.userModel?.data!.dateEndCode == null
+                                //     ? Container()
+                                //     : ProfileDataItem(
+                                //         title: 'subscription_end'.tr(),
+                                //         data: DateFormat('yyyy-MM-dd').format(
+                                //             cubit.userModel!.data!
+                                //                 .dateEndCode!)),
+
                                 CustomButton(
                                     height: getSize(context) / 8,
                                     text: 'subscription_renewal'.tr(),
