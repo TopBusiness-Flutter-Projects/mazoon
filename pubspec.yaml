@@ -2,7 +2,7 @@ name: new_mazoon
 description: A new Flutter project.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 1.0.0+27
+version: 1.0.0+28
 
 environment:
   sdk: '>=3.0.6 <4.0.0'
